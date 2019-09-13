@@ -2,8 +2,8 @@ const fs = require('fs');
 const line = require('@line/bot-sdk');
 const express = require('express');
 const config = {
-    channelAccessToken: '+w9YE0wGd665gH3dPB7LKMfe+ytX14/fx8wiQy4WwlkETHDSanBzqxKTNfDCUmmqVfwOhu6jNFL+23HqASRKPJtzc0yEygdoALqAGhHT2gfS+zDAOVY/4ZXRxsAbi3l9oAVyaHDSvCcfUEVES0WrkgdB04t89/1O/w1cDnyilFU=',
-    channelSecret: '8618fe00f42c57feccad6c0a4d232fe5'
+    channelAccessToken: 'B+sgdP8ZDtJblIa3cW4CwVw1uG+wafCGbijMkMzWiO8/LP/UWA3bvbm9oTC4Nm/IDumT/FXNCo4tfwtxz/0UNKgCmcfjXuh1JqUPQEbeOJ03gnO2+Y8cGXx6FiDnAWQwHwv0GSr2XdRblTa5ZejpzQdB04t89/1O/w1cDnyilFU=',
+    channelSecret: 'ddf2d50e4e38a1827824c1d2bbd9afcc'
 };
 const client = new line.Client(config);
 const app = express();
