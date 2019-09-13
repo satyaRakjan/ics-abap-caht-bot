@@ -1,0 +1,17 @@
+{
+  "name": "icsabap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@line/bot-sdk": "^6.8.2",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "sync-request": "^6.1.0"
+  }
+}
