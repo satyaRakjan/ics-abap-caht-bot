@@ -19,7 +19,7 @@ const today = {
   };
   exports.today = today;
 
-  const holiday =[
+  const holidaylist =[
     {
       "type": "flex",
       "altText": "Holiday",
@@ -43,4 +43,4 @@ const today = {
       }
     }
   ]
-  exports.holiday = holiday;
+  exports.holiday = holidaylist;
