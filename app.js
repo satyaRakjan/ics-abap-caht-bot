@@ -103,6 +103,8 @@ function Intent(event){
       client.replyMessage(event.replyToken, msg.help);
   }else if(userSay.includes("command")){
     client.replyMessage(event.replyToken, msg.command);
+  }else if(userSay.includes("register")){
+    client.replyMessage(event.replyToken, msg.register);
   }
   
   
