@@ -101,6 +101,8 @@ function Intent(event){
   var userSay = a[0];
    if(userSay.includes("help")){
       client.replyMessage(event.replyToken, msg.help);
+  }else if(userSay.includes("command")){
+    client.replyMessage(event.replyToken, msg.command);
   }
   
   
