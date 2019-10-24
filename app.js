@@ -92,7 +92,10 @@ function Intent(event){
       }
     }
   }else if(userSay.includes("employee>")){
-    client.pushMessage(event.source.userId, odata.employee);
+    for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
+      client.pushMessage(event.source.userId, odata.employee);
+
+    }
   }
 }
 
