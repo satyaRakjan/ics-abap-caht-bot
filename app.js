@@ -99,7 +99,10 @@ function Intent(event){
   var doc = nlp(event.message.text)
   var a =doc.terms().out('array')
   var userSay = a[0];
-  console.log(userSay)
+   if(userSay.includes("help")){
+      client.replyMessage(event.replyToken, msg.help);
+  }
+  
   
     // var userSay = event.message.text.toLowerCase();
     // var user = "JIRASIT.GO";
