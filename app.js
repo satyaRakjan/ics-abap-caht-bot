@@ -77,17 +77,11 @@ function Intent(event){
     for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
       var checkDate=day.holidayRespond.result.data[i].Date
       if(day.date === checkDate){
-          var msg={
-            type: 'text',
-            text:  day.holidayRespond.result.data[i].HolidayDescriptionThai+"("+ day.holidayRespond.result.data[i].HolidayDescription+")"
-          };
-          client.pushMessage(event.source.userId, msg);
+          console.log("yes"+day.date)
       }
       else{
-        client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: ts.toDateString(),
-        })
+        console.log("no"+day.date)
+
       }
     }
   }
