@@ -1,4 +1,3 @@
-import { help } from './messageText';
 
 const fs = require('fs');
 const line = require('@line/bot-sdk');
@@ -94,6 +93,7 @@ function handleEvent(event) {
 }
 
 function Intent(event){
+  import { help } from './messageText';
   console.log(help);
     // var userSay = event.message.text.toLowerCase();
     // var user = "JIRASIT.GO";
