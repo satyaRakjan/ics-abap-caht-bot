@@ -93,7 +93,7 @@ function Intent(event){
     }
   }else if(userSay.includes("employee>")){
     for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
-      console.log(odata.employee)
+      console.log(odata.employee.contents.footer)
       // client.pushMessage(event.source.userId, odata.employee);
 
     }
