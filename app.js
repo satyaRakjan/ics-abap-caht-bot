@@ -3,9 +3,11 @@ const fs = require('fs');
 const line = require('@line/bot-sdk');
 const express = require('express');
 const config = require('./config');
-const client = new line.Client(config);
 const app = express();
 const request = require('sync-request')
+const nlp = require('compromise')
+const client = new line.Client(config);
+
 app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', line.middleware(config), (req, res) => {
   Promise
@@ -94,8 +96,11 @@ function handleEvent(event) {
 
 function Intent(event){
   const msg = require('./messageText');
-  console.log(msg.help);
-
+  var doc = nlp(event.message.text)
+  var a =doc.terms().out('array')
+  var userSay = a[0];
+  console.log(userSay)
+  
     // var userSay = event.message.text.toLowerCase();
     // var user = "JIRASIT.GO";
     // var password = "ICS@100";
