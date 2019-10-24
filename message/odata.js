@@ -9,7 +9,7 @@ const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sa
 var sapRespond = JSON.parse(odata.getBody());
 exports.sapRespond = sapRespond;
 
-  var employee =[
+  var employee =JSON.parse[
     {
       "type": "flex",
       "altText": "Flex Message",
