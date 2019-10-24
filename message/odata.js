@@ -10,7 +10,7 @@ var sapRespond = JSON.parse(odata.getBody());
 exports.sapRespond = sapRespond;
 
 for (let i = 0; i < sapRespond.d.results.length; i++) {
-  var Employee =[
+  var employee =[
     {
       "type": "flex",
       "altText": "Flex Message",
