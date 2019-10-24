@@ -61,6 +61,7 @@ function handleEvent(event) {
 
 function Intent(event){
   const msg = require('./messageText');
+  const day = require('./holiday');
   var doc = nlp(event.message.text)
   var a =doc.terms().out('array')
   var userSay = a[0];
@@ -70,9 +71,10 @@ function Intent(event){
     client.replyMessage(event.replyToken, msg.command);
   }else if(userSay.includes("register")){
     client.replyMessage(event.replyToken, msg.register);
-  }else if(userSay.includes("shortcut>")){
+  }else if(userSay.includes("shortcut")){
     client.pushMessage(event.source.userId, msg.shortcut);
-
+  }else if(userSay.includes("today")){
+    console.log(day.holidayRespond)
   }
   
   
