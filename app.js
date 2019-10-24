@@ -93,8 +93,9 @@ function handleEvent(event) {
 }
 
 function Intent(event){
-  const help = require('./messageText');
-  console.log(help);
+  const msg = require('./messageText');
+  console.log(msg.help);
+
     // var userSay = event.message.text.toLowerCase();
     // var user = "JIRASIT.GO";
     // var password = "ICS@100";
