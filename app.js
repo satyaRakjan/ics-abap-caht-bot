@@ -13,71 +13,114 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 function handleEvent(event) {
-    var messageID=event.message.id; 
-    console.log(event.message.type)
-  if (event.type !== 'message' || event.message.type !== 'text') {
-        if(event.message.type == 'image'){
-            var myWriteStream = fs.createWriteStream(__dirname+'/'+messageID+'.jpg','binary');
-            client.getMessageContent(messageID).then((stream) => {
-                stream.on('data', (chunk) => {
-                    myWriteStream.write(chunk)
-                })
-                stream.on('end', () => {
-                    app.use('/'+messageID, express.static(messageID+'.jpg'))
-                    var hosturl="https://ics-chat-bot.herokuapp.com/";
-                    msg={
-                        'type': 'image',
-                        'originalContentUrl': hosturl+messageID,
-                        'previewImageUrl': hosturl+messageID 
-                      }
-                      broadCast(msg)
-                    })
-            })
-        }else if(event.message.type == 'sticker'){
-                    msg={
-                        'type': 'sticker',
-                        'stickerId':  event.message.stickerId,
-                        'packageId': event.message.packageId 
-                    }
-                    broadCast(msg)
-        }
+  switch (event.type) {
+    case 'message':
+      switch (event.message.type) {
+        case 'text':
+          return    Intent(event);
+        case 'image':
+          return  brcontent(event);
+        case 'video':
+          return  brcontent(event);
+        case 'audio':
+          return  brcontent(event);
+        case 'location':
+          return  brcontent(event);
+        case 'sticker':
+          return  brcontent(event);
+        default:
+          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+      }
 
-  }else{
-      Intent(event)
-      client.getProfile(event.source.userId).then((profile) => {
-        console.log(profile);
-      });
+    case 'follow':
+      return replyText(event.replyToken, 'Got followed event');
+
+    case 'unfollow':
+      return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
+
+    case 'join':
+      return replyText(event.replyToken, `Joined ${event.source.type}`);
+
+    case 'leave':
+      return console.log(`Left: ${JSON.stringify(event)}`);
+
+    case 'postback':
+      let data = event.postback.data;
+      return replyText(event.replyToken, `Got postback: ${data}`);
+
+    case 'beacon':
+      const dm = `${Buffer.from(event.beacon.dm || '', 'hex').toString('utf8')}`;
+      return beacon(event,dm);
+    default:
+      throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
+  //   var messageID=event.message.id; 
+  //   console.log(event.message.type)
+  // if (event.type !== 'message' || event.message.type !== 'text') {
+  //       if(event.message.type == 'image'){
+  //           var myWriteStream = fs.createWriteStream(__dirname+'/'+messageID+'.jpg','binary');
+  //           client.getMessageContent(messageID).then((stream) => {
+  //               stream.on('data', (chunk) => {
+  //                   myWriteStream.write(chunk)
+  //               })
+  //               stream.on('end', () => {
+  //                   app.use('/'+messageID, express.static(messageID+'.jpg'))
+  //                   var hosturl="https://ics-chat-bot.herokuapp.com/";
+  //                   msg={
+  //                       'type': 'image',
+  //                       'originalContentUrl': hosturl+messageID,
+  //                       'previewImageUrl': hosturl+messageID 
+  //                     }
+  //                     broadCast(msg)
+  //                   })
+  //           })
+  //       }else if(event.message.type == 'sticker'){
+  //                   msg={
+  //                       'type': 'sticker',
+  //                       'stickerId':  event.message.stickerId,
+  //                       'packageId': event.message.packageId 
+  //                   }
+  //                   broadCast(msg)
+  //       }
+
+  // }else{
+  //     Intent(event)
+  //     client.getProfile(event.source.userId).then((profile) => {
+  //       console.log(profile);
+  //     });
+  // }
 }
 
 function Intent(event){
-    var userSay = event.message.text.toLowerCase();
-    var user = "JIRASIT.GO";
-    var password = "ICS@100";
-    const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
-      headers: {
-          "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
-      },
-    });
-    var sapRespond = JSON.parse(odata.getBody());
-    if(userSay.includes("help")){
-        console.log("Help") 
-    }else if(userSay.includes("fn>")){
-        const name =event.message.text.substr(3);
-        Info(sapRespond,name,event)
-    }else if(userSay.includes("nn>")){
-        const name =event.message.text.substr(3);
-        Info(sapRespond,name,event)    
-    }else if(userSay.includes("l>employee")){
-      Employee(sapRespond,event)    
-    }else if(userSay.includes("br>")){
-        const brText = event.message.text.substr(3);
-        var msg = {
-            type: 'text',
-            text:  brText
-        };
-           client.broadcast(msg);
-    }
+  import { help } from './messageText';
+  console.log(help);
+    // var userSay = event.message.text.toLowerCase();
+    // var user = "JIRASIT.GO";
+    // var password = "ICS@100";
+    // const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sap/ZPROFILE_SRV/GetEmployeeListSet?$format=json", {
+    //   headers: {
+    //       "Authorization": "Basic " + new Buffer(user + ":" + password).toString('base64')
+    //   },
+    // });
+    // var sapRespond = JSON.parse(odata.getBody());
+    // if(userSay.includes("help")){
+    //     console.log("Help") 
+    // }else if(userSay.includes("fn>")){
+    //     const name =event.message.text.substr(3);
+    //     Info(sapRespond,name,event)
+    // }else if(userSay.includes("nn>")){
+    //     const name =event.message.text.substr(3);
+    //     Info(sapRespond,name,event)    
+    // }else if(userSay.includes("l>employee")){
+    //   Employee(sapRespond,event)    
+    // }else if(userSay.includes("br>")){
+    //     const brText = event.message.text.substr(3);
+    //     var msg = {
+    //         type: 'text',
+    //         text:  brText
+    //     };
+    //        client.broadcast(msg);
+    // }
 }
 
 function Employee(sapRespond,event){
