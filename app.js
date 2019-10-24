@@ -83,7 +83,7 @@ function Intent(event){
           client.pushMessage(event.source.userId, message);
       }
       else{
-        client.pushMessage(event.source.userId, day.today);
+        client.replyMessage(event.replyToken, day.today);
       }
     }
   }
