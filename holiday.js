@@ -18,3 +18,29 @@ const today = {
     "text": ts.toDateString()
   };
   exports.today = today;
+
+  const holiday =[
+    {
+      "type": "flex",
+      "altText": "Holiday",
+      "contents": {
+        "type": "bubble",
+        "direction": "ltr",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "uri",
+                "label": "Holiday",
+                "uri": "line://app/1613757134-7LX41NrK"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+  exports.holiday = holiday;

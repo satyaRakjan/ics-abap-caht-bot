@@ -73,7 +73,11 @@ function Intent(event){
     client.replyMessage(event.replyToken, msg.register);
   }else if(userSay.includes("shortcut")){
     client.pushMessage(event.source.userId, msg.shortcut);
-  }else if(userSay.includes("today")){
+  } else if(userSay.includes("holiday")){
+    client.pushMessage(event.source.userId, day.holiday);
+
+  }
+  else if(userSay.includes("today")){
     for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
       if(day.date === day.holidayRespond.result.data[i].Date){
           var message={
