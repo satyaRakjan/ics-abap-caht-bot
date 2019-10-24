@@ -74,7 +74,22 @@ function Intent(event){
   }else if(userSay.includes("shortcut")){
     client.pushMessage(event.source.userId, msg.shortcut);
   }else if(userSay.includes("today")){
-    console.log(day.holidayRespond)
+    for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
+      var checkDate=holidayRespond.result.data[i].Date
+      if(fulldate === checkDate){
+          var msg={
+            type: 'text',
+            text:  holidayRespond.result.data[i].HolidayDescriptionThai+"("+ holidayRespond.result.data[i].HolidayDescription+")"
+          };
+          client.pushMessage(event.source.userId, msg);
+      }
+      else{
+        client.replyMessage(event.replyToken, {
+          type: 'text',
+          text: ts.toDateString(),
+        })
+      }
+    }
   }
   
   
