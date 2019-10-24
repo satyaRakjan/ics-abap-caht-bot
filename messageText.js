@@ -36,3 +36,58 @@ const help = {
     }
   ]
   exports.register = register;
+
+  const shortcut =[{
+    "type": "imagemap",
+    "baseUrl": "https://manoch.herokuapp.com/rich?_ignored=",
+    "altText": "This is an imagemap a",
+    "baseSize": {
+      "width": 1040,
+      "height": 1040
+    },
+    "actions": [
+      {
+        "type": "message",
+        "area": {
+          "x": 37,
+          "y": 96,
+          "width": 476,
+          "height": 461
+        },
+        "text": "command"
+      },
+      {
+        "type": "message",
+        "area": {
+          "x": 552,
+          "y": 93,
+          "width": 447,
+          "height": 461
+        },
+        "text": "employee>"
+      },
+      {
+        "type": "message",
+        "area": {
+          "x": 46,
+          "y": 630,
+          "width": 470,
+          "height": 410
+        },
+        "text": "today>"
+      },
+      {
+        "type": "uri",
+        "area": {
+          "x": 563,
+          "y": 634,
+          "width": 434,
+          "height": 406
+        },
+        "linkUri": "line://app/1613757134-7LX41NrK"
+      }
+    ]
+  }
+  ]
+  exports.shortcut = shortcut;
+
