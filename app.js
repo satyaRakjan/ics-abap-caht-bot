@@ -16,7 +16,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 function handleEvent(event) {
-    var messageID=event.message.id;
+    var messageID=event.message.id; 
   if (event.type !== 'message' || event.message.type !== 'text') {
         if(event.message.type == 'image'){
             var myWriteStream = fs.createWriteStream(__dirname+'/'+messageID+'.jpg','binary');
