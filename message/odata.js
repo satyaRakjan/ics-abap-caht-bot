@@ -9,7 +9,6 @@ const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sa
 var sapRespond = JSON.parse(odata.getBody());
 exports.sapRespond = sapRespond;
 
-let i = null
   var employee =[
     {
       "type": "flex",
@@ -43,8 +42,8 @@ let i = null
               "type": "button",
               "action": {
                 "type": "message",
-                "label":  sapRespond.d.results[i].Firstname+" "+sapRespond.d.results[i].Lastname+" "+"("+sapRespond.d.results[i].Nickname+")"                  ,
-                "text": "fn>"+sapRespond.d.results[i].Firstname
+                "label":null  ,
+                "text": null
               }
             }
           ]
