@@ -60,24 +60,25 @@ function handleEvent(event) {
 }
 
 function Intent(event){
-  const msg = require('./messageText');
-  const day = require('./holiday');
+  const msg = require('./message/messageText');
+  const day = require('./message/holiday');
+  const odata = require('./message/odata');
+
   var doc = nlp(event.message.text)
   var a =doc.terms().out('array')
   var userSay = a[0];
-   if(userSay.includes("help")){
+   if(userSay.includes("help>")){
       client.replyMessage(event.replyToken, msg.help);
-  }else if(userSay.includes("command")){
+  }else if(userSay.includes("command>")){
     client.replyMessage(event.replyToken, msg.command);
-  }else if(userSay.includes("register")){
+  }else if(userSay.includes("register>")){
     client.replyMessage(event.replyToken, msg.register);
-  }else if(userSay.includes("shortcut")){
+  }else if(userSay.includes("shortcut>")){
     client.pushMessage(event.source.userId, msg.shortcut);
-  } else if(userSay.includes("holiday")){
+  } else if(userSay.includes("holiday>")){
     client.pushMessage(event.source.userId, day.holiday);
-
   }
-  else if(userSay.includes("today")){
+  else if(userSay.includes("today>")){
     for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
       if(day.date === day.holidayRespond.result.data[i].Date){
           var message={
@@ -90,6 +91,8 @@ function Intent(event){
         client.replyMessage(event.replyToken, day.today);
       }
     }
+  }else if(userSay.includes("employee>")){
+    console.log(odata.sapRespond)
   }
   
   
