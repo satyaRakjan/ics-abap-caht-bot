@@ -75,15 +75,15 @@ function Intent(event){
     client.pushMessage(event.source.userId, msg.shortcut);
   }else if(userSay.includes("today")){
     for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
-      var checkDate=day.holidayRespond.result.data[i].Date
-      var dates ="2019-10-23"
-      if(dates === checkDate){
-        
-          client.pushMessage(event.source.userId, day.today);
+      if(day.date === day.holidayRespond.result.data[i].Date){
+          var message={
+            type: 'text',
+            text: "วันหยุด "+ day.holidayRespond.result.data[i].HolidayDescriptionThai+"("+ day.holidayRespond.result.data[i].HolidayDescription+")"
+          };
+          client.pushMessage(event.source.userId, message);
       }
       else{
-        console.log("no"+day.date)
-
+        client.pushMessage(event.source.userId, day.date);
       }
     }
   }
