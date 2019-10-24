@@ -76,8 +76,9 @@ function Intent(event){
   }else if(userSay.includes("today")){
     for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
       var checkDate=day.holidayRespond.result.data[i].Date
-      if(day.date === checkDate){
-          console.log("yes"+day.date)
+      var day =2019-10-23
+      if(day === checkDate){
+          console.log("yes"+day.holidayRespond.result.data[i].HolidayDescriptionThai)
       }
       else{
         console.log("no"+day.date)
