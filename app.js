@@ -80,7 +80,7 @@ function Intent(event){
       if(dates === checkDate){
           var msg1={
             type: 'text',
-            text:  holidayRespond.result.data[i].HolidayDescriptionThai+"("+ holidayRespond.result.data[i].HolidayDescription+")"
+            text:  day.holidayRespond.result.data[i].HolidayDescriptionThai+"("+ day.holidayRespond.result.data[i].HolidayDescription+")"
           };
           client.pushMessage(event.source.userId, msg1);
       }
