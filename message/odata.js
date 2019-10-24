@@ -8,3 +8,49 @@ const odata = request("GET", "http://vmfioriics.ics-th.com:8000/sap/opu/odata/sa
 });
 var sapRespond = JSON.parse(odata.getBody());
 exports.sapRespond = sapRespond;
+
+for (let i = 0; i < sapRespond.d.results.length; i++) {
+  var Employee =[
+    {
+      "type": "flex",
+      "altText": "Flex Message",
+      "contents": {
+        "type": "bubble",
+        "direction": "ltr",
+        "header": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Employee",
+              "align": "center"
+            }
+          ]
+        },
+        "hero": {
+          "type": "image",
+          "url": "https://ics-chat-bot.herokuapp.com/image",
+          "size": "full",
+          "aspectRatio": "1.51:1",
+          "aspectMode": "fit"
+        },
+        "footer": {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label":  sapRespond.d.results[i].Firstname+" "+sapRespond.d.results[i].Lastname+" "+"("+sapRespond.d.results[i].Nickname+")"                  ,
+                "text": "fn>"+sapRespond.d.results[i].Firstname
+              }
+            }
+          ]
+        }
+      }
+   }
+  ]
+}
+exports.employee = employee;

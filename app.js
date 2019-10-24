@@ -92,11 +92,18 @@ function Intent(event){
       }
     }
   }else if(userSay.includes("employee>")){
-    console.log(odata.sapRespond)
+    client.pushMessage(event.source.userId, odata.employee);
   }
-  
-  
 }
+
+function beacon(event,dm){
+  var msg={
+    type: 'text',
+    text:  event.beacon.type+"beacon hwid "+event.beacon.hwid+"with device message = "+dm
+  };
+  client.pushMessage(event.source.userId, msg);
+}
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`listening on ${port}`);
