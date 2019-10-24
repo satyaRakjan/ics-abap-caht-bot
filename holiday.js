@@ -8,6 +8,7 @@ const holiday = request("GET", "https://apigw1.bot.or.th/bot/public/financial-in
   },
 });
 var holidayRespond = JSON.parse(holiday.getBody());
+exports.holidayRespond = holidayRespond;
+
 var date = ts.toISOString().substring(0,10);
 exports.date = date;
-exports.holidayRespond = holidayRespond;
