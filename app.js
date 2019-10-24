@@ -75,11 +75,11 @@ function Intent(event){
     client.pushMessage(event.source.userId, msg.shortcut);
   }else if(userSay.includes("today")){
     for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
-      var checkDate=holidayRespond.result.data[i].Date
-      if(fulldate === checkDate){
+      var checkDate=day.holidayRespond.result.data[i].Date
+      if(day.date === checkDate){
           var msg={
             type: 'text',
-            text:  holidayRespond.result.data[i].HolidayDescriptionThai+"("+ holidayRespond.result.data[i].HolidayDescription+")"
+            text:  day.holidayRespond.result.data[i].HolidayDescriptionThai+"("+ day.holidayRespond.result.data[i].HolidayDescription+")"
           };
           client.pushMessage(event.source.userId, msg);
       }
