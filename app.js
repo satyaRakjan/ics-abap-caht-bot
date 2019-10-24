@@ -93,7 +93,7 @@ function handleEvent(event) {
 }
 
 function Intent(event){
-  import { help } from './messageText';
+  const help = require('./messageText');
   console.log(help);
     // var userSay = event.message.text.toLowerCase();
     // var user = "JIRASIT.GO";
