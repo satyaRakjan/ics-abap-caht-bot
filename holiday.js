@@ -12,3 +12,9 @@ exports.holidayRespond = holidayRespond;
 
 var date = ts.toISOString().substring(0,10);
 exports.date = date;
+
+const today={
+    type: 'text',
+    text: "วันหยุด "+ holidayRespond.result.data[i].HolidayDescriptionThai+"("+ holidayRespond.result.data[i].HolidayDescription+")"
+  };
+  exports.today = today;

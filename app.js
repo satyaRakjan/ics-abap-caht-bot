@@ -78,11 +78,8 @@ function Intent(event){
       var checkDate=day.holidayRespond.result.data[i].Date
       var dates ="2019-10-23"
       if(dates === checkDate){
-          var msg1={
-            type: 'text',
-            text: "วันหยุด "+ day.holidayRespond.result.data[i].HolidayDescriptionThai+"("+ day.holidayRespond.result.data[i].HolidayDescription+")"
-          };
-          client.pushMessage(event.source.userId, msg1);
+        
+          client.pushMessage(event.source.userId, day.today);
       }
       else{
         console.log("no"+day.date)
