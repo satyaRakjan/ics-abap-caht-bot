@@ -97,8 +97,8 @@ function Intent(event){
     const name =event.message.text.substr(3);
     Info(name,event)
   }else if(userSay.includes("nn>")){
-      const name =event.message.text.substr(3);
-      InfoNickname(name,event)    
+    const name =event.message.text.substr(3);
+    InfoNickname(name,event)    
   }
 }
 
@@ -235,6 +235,8 @@ function Info(name,event){
 function InfoNickname(name,event){
   const odata = require('./message/odata');
   var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
+  console.log(nameCapitalized)
+
   for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
   if(odata.sapRespond.d.results[i].Firstname.includes(nameCapitalized)){
     var msg = {
