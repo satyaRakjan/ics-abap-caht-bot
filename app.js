@@ -238,7 +238,7 @@ function InfoNickname(name,event){
   console.log(nameCapitalized)
 
   for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
-  if(odata.sapRespond.d.results[i].Firstname.includes(nameCapitalized)){
+  if(odata.sapRespond.d.results[i].Nickname.includes(nameCapitalized)){
     var msg = {
           "type": "flex",
               "altText": "Flex Message",
