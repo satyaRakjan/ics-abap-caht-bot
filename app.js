@@ -107,16 +107,15 @@ function Intent(event){
     const train = request("GET", "https://line-liff-v2.herokuapp.com/intent", {
     });
     var trainbot = JSON.parse(train.getBody());
-    for (let j = 0; j < trainbot.length; j++) {
-      var intent =trainbot.message[j]
-      console.log(intent)
-      if(userSay.includes(intent)){
-        console.log("OK")
-        client.pushMessage(event.source.userId, trainbot.reply);
-      }else{
-        console.log("fail")
+    for (let i = 0; i < trainbot.length; i++) {
+      console.log(trainbot.message)
+      // if(userSay.includes(intent)){
+      //   console.log("OK")
+      //   client.pushMessage(event.source.userId, trainbot.reply);
+      // }else{
+      //   console.log("fail")
 
-      }
+      // }
 
     }
   }
