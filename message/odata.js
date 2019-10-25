@@ -52,7 +52,9 @@ exports.sapRespond = sapRespond;
    }
   ])
   // const employeemessage = JSON.parse(employee);
-  exports.employee = employee;
+  var obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+
+  exports.employee = obj;
 
 
 
