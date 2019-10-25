@@ -119,7 +119,6 @@ function Intent(event){
     client.pushMessage(event.source.userId, Intent.trainmsg);
 
   }else{
-    console.log("elese")
     for (let i = 0; i < Intent.getIntent.length; i++) {
       if(userSay.includes(Intent.getIntent[i].message)){
          var intentmsg =Intent.getIntent[i].reply
