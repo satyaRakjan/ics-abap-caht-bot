@@ -108,7 +108,9 @@ function Intent(event){
     });
     var trainbot = JSON.parse(train.getBody());
     for (let i = 0; i < trainbot.length; i++) {
-      if(userSay.includes(trainbot.message[i])){
+      var intent =trainbot.message[i]
+      console.log(intent)
+      if(userSay.includes(intent)){
         console.log("OK")
         client.pushMessage(event.source.userId, trainbot.reply);
       }else{
