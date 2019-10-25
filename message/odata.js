@@ -51,8 +51,8 @@ exports.sapRespond = sapRespond;
       }
    }
   ]
+  const employeemessage = JSON.parse(employee);
+  exports.employeemessage = employeemessage;
 
-  exports.employee = function() {
-    return employee;
-};
+
 

@@ -95,7 +95,7 @@ function Intent(event){
     for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
       // console.log(odata.employee)
       var a =JSON.stringify(odata.employee)
-      console.log(odata.employee)
+      console.log(odata.employeemessage)
 
       // client.pushMessage(event.source.userId, odata.employee);
 
