@@ -11,7 +11,7 @@ exports.sapRespond = sapRespond;
 
   var employee =[
     {
-      type: "flex",
+      "type": "flex",
       "altText": "Flex Message",
       "contents": {
         "type": "bubble",
