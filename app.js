@@ -109,7 +109,11 @@ function Intent(event){
     var trainbot = JSON.parse(train.getBody());
     for (let i = 0; i < trainbot.length; i++) {
       if(userSay.includes(trainbot.message)){
+        console.log("OK")
         client.pushMessage(event.source.userId, trainbot.reply);
+      }else{
+        console.log("fail")
+
       }
 
     }
