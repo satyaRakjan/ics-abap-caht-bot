@@ -93,12 +93,47 @@ function Intent(event){
     }
   }else if(userSay.includes("employee>")){
     for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
-      // console.log(odata.employee)
-      var a =JSON.stringify(odata.employee)
-      console.log(a)
-
-      // client.pushMessage(event.source.userId, odata.employee);
-
+      const message ={
+        "type": "flex",
+        "altText": "Flex Message",
+        "contents": {
+          "type": "bubble",
+          "direction": "ltr",
+          "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Employee",
+                "align": "center"
+              }
+            ]
+          },
+          "hero": {
+            "type": "image",
+            "url": "https://ics-chat-bot.herokuapp.com/image",
+            "size": "full",
+            "aspectRatio": "1.51:1",
+            "aspectMode": "fit"
+          },
+          "footer": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "button",
+                "action": {
+                  "type": "message",
+                  "label":  sapRespond.d.results[i].Firstname+" "+sapRespond.d.results[i].Lastname+" "+"("+sapRespond.d.results[i].Nickname+")"                  ,
+                  "text": "fn>"+sapRespond.d.results[i].Firstname
+                }
+              }
+            ]
+          }
+        }
+     }
+      client.pushMessage(event.source.userId,message)
     }
   }
 }
