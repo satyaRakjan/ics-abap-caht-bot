@@ -104,7 +104,7 @@ function Intent(event){
   }
 }
 
-function brcontent(event){
+function broadcast(event){
   if(event.message.type == 'image'){
     var messageID=event.message.id;
       var myWriteStream = fs.createWriteStream(__dirname+'/'+messageID+'.jpg','binary');
