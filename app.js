@@ -108,7 +108,7 @@ function Intent(event){
     var train = request('POST', 'https://line-liff-v2.herokuapp.com/new', {
     json: {
       id: 3,
-      message: "train3",
+      message: "sattaya",
       reply: "Sir Crocodile"
   },
   });
