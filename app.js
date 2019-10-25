@@ -99,6 +99,52 @@ function Intent(event){
   }else if(userSay.includes("nn>")){
     const name =event.message.text.substr(3);
     InfoNickname(name,event)    
+  }  else if(userSay.includes("br>")){
+       broadcast(event)
+  }
+}
+
+function brcontent(event){
+  if(event.message.type == 'image'){
+    var messageID=event.message.id;
+      var myWriteStream = fs.createWriteStream(__dirname+'/'+messageID+'.jpg','binary');
+      client.getMessageContent(messageID).then((stream) => {
+          stream.on('data', (chunk) => {
+              myWriteStream.write(chunk)
+          })
+          stream.on('end', () => {
+              app.use('/'+messageID, express.static(messageID+'.jpg'))
+              var msg={
+                  'type': 'image',
+                  'originalContentUrl': hosturl+messageID,
+                  'previewImageUrl': hosturl+messageID 
+                }
+                client.broadcast(msg);
+              })
+      })
+  }else if(event.message.type == 'sticker'){
+              var msg={
+                  'type': 'sticker',
+                  'stickerId':  event.message.stickerId,
+                  'packageId': event.message.packageId 
+              }
+              client.broadcast(msg);
+  }else if(event.message.type == 'location'){
+              var msg={
+                  'type': 'location',
+                  'title':  event.message.type,
+                  'address': event.message.address,
+                  'latitude':event.message.latitude,
+                  'longitude':  event.message.longitude
+              }
+              client.broadcast(msg);
+  }else if(event.message.type =='text'){
+    const brText = event.message.text.substr(3);
+    var msg = {
+      type: 'text',
+      text:  brText
+     };
+    client.broadcast(msg);
   }
 }
 
