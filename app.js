@@ -112,8 +112,7 @@ function Intent(event){
       if(userSay.includes(trainbot[i].message)){
          var intentmsg =trainbot[i].reply
          console.log(intentmsg)
-
-        // client.pushMessage(event.source.userId, trainbot[i].reply);
+        client.pushMessage(event.source.userId, intentmsg);
       }
     }
   }
