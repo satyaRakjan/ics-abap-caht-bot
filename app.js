@@ -108,11 +108,13 @@ function Intent(event){
     });
     var trainbot = JSON.parse(train.getBody());
     for (let i = 0; i < trainbot.length; i++) {
-      // console.log(trainbot[i].message)
       if(userSay.includes(trainbot[i].message)){
          var intentmsg =trainbot[i].reply
-         console.log(intentmsg)
-        client.pushMessage(event.source.userId, intentmsg);
+         var message={
+          type: 'text',
+          text: intentmsg
+        };
+        client.pushMessage(event.source.userId, message);
       }
     }
   }
