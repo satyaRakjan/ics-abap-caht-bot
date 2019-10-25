@@ -103,6 +103,17 @@ function Intent(event){
        broadcast(event)
   }else if(userSay.includes("media>")){
       client.pushMessage(event.source.userId, msg.broadcast);
+  }else if(userSay.includes("train>")){
+    var request = require('sync-request');
+    var train = request('POST', 'https://line-liff-v2.herokuapp.com/new', {
+    json: {
+      id: 3,
+      message: "train3",
+      reply: "Sir Crocodile"
+  },
+  });
+    var user = JSON.parse(train.getBody('utf8'));
+    console.log(user)
   }else{
     const train = request("GET", "https://line-liff-v2.herokuapp.com/intent", {
     });
