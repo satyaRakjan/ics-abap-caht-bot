@@ -110,8 +110,8 @@ function Intent(event){
     for (let i = 0; i < trainbot.length; i++) {
       // console.log(trainbot[i].message)
       if(userSay.includes(trainbot[i].message)){
-         var msg =trainbot[i].reply
-         console.log(msg)
+         var intentmsg =trainbot[i].reply
+         console.log(intentmsg)
 
         // client.pushMessage(event.source.userId, trainbot[i].reply);
       }
