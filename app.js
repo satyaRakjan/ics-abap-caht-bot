@@ -107,7 +107,9 @@ function Intent(event){
     const train = request("GET", "https://line-liff-v2.herokuapp.com/intent", {
     });
     var trainbot = JSON.parse(train.getBody());
-    console.log(trainbot)
+    for (let i = 0; i < trainbot.id.length; i++) {
+      console.log(trainbot.message[i])
+    }
   }
 }
 
