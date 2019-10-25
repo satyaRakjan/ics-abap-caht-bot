@@ -59,10 +59,10 @@ function handleEvent(event) {
   }
 }
 
+
 function Intent(event){
   const msg = require('./message/messageText');
   const day = require('./message/holiday');
-  const odata = require('./message/odata');
 
   var doc = nlp(event.message.text)
   var a =doc.terms().out('array')
@@ -92,51 +92,229 @@ function Intent(event){
       }
     }
   }else if(userSay.includes("employee>")){
-    for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
-      const message ={
-        "type": "flex",
-        "altText": "Flex Message",
-        "contents": {
-          "type": "bubble",
-          "direction": "ltr",
-          "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Employee",
-                "align": "center"
-              }
-            ]
-          },
-          "hero": {
-            "type": "image",
-            "url": "https://ics-chat-bot.herokuapp.com/image",
-            "size": "full",
-            "aspectRatio": "1.51:1",
-            "aspectMode": "fit"
-          },
-          "footer": {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "button",
-                "action": {
-                  "type": "message",
-                  "label":  odata.sapRespond.d.results[i].Firstname+" "+odata.sapRespond.d.results[i].Lastname+" "+"("+odata.sapRespond.d.results[i].Nickname+")"                  ,
-                  "text": "fn>"+odata.sapRespond.d.results[i].Firstname
-                }
-              }
-            ]
-          }
-        }
-     }
-      client.pushMessage(event.source.userId,message)
-    }
+      Employee(event)
+  }else if(userSay.includes("fn>")){
+    const name =event.message.text.substr(3);
+    Info(name,event)
+  }else if(userSay.includes("nn>")){
+      const name =event.message.text.substr(3);
+      InfoNickname(name,event)    
   }
 }
+
+
+function Employee(event){
+  const odata = require('./message/odata');
+  for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
+    const message ={
+      "type": "flex",
+      "altText": "Flex Message",
+      "contents": {
+        "type": "bubble",
+        "direction": "ltr",
+        "header": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Employee",
+              "align": "center"
+            }
+          ]
+        },
+        "hero": {
+          "type": "image",
+          "url": "https://ics-chat-bot.herokuapp.com/image",
+          "size": "full",
+          "aspectRatio": "1.51:1",
+          "aspectMode": "fit"
+        },
+        "footer": {
+          "type": "box",
+          "layout": "horizontal",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "message",
+                "label":  odata.sapRespond.d.results[i].Firstname+" "+odata.sapRespond.d.results[i].Lastname+" "+"("+odata.sapRespond.d.results[i].Nickname+")"                  ,
+                "text": "fn>"+odata.sapRespond.d.results[i].Firstname
+              }
+            }
+          ]
+        }
+      }
+   }
+    client.pushMessage(event.source.userId,message)
+  }
+}
+
+function Info(name,event){
+  const odata = require('./message/odata');
+  var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
+  for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
+  if(odata.sapRespond.d.results[i].Firstname.includes(nameCapitalized)){
+    var msg = {
+          "type": "flex",
+              "altText": "Flex Message",
+              "contents": {
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "SAP",
+                      "align": "center"
+                    }
+                  ]
+                },
+                "hero": {
+                  "type": "image",
+                  "url": "https://ics-chat-bot.herokuapp.com/image",
+                  "size": "5xl",
+                  "aspectRatio": "1.91:1",
+                  "aspectMode": "fit"
+                },
+                "body": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": odata.sapRespond.d.results[i].Firstname+"  "+odata.sapRespond.d.results[i].Lastname+"("+odata.sapRespond.d.results[i].Nickname+")",
+                      "align": "center",
+                      "weight": "bold",
+                      "size": "lg"
+                    },
+                    {
+                      "type": "separator",
+                      "margin": "lg"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "spacer"
+                        },
+                        {
+                          "type": "text",
+                          "text": "Tel:"+" "+odata.sapRespond.d.results[i].Tel
+                        },
+                        {
+                          "type": "text",
+                          "text": "Email:"+" "+odata.sapRespond.d.results[i].Email
+                        },
+                        {
+                          "type": "text",
+                          "text": "Birthdate:"+" "+odata.sapRespond.d.results[i].Birthdate
+                        },
+                        {
+                          "type": "text",
+                          "text": "Position:"+" "+odata.sapRespond.d.results[i].Position
+                        },
+                        {
+                          "type": "text",
+                          "text": "Line:"+" "+odata.sapRespond.d.results[i].Line
+                        }
+                      ]
+                    },
+                  ]
+                }
+              }
+      };
+      client.pushMessage(event.source.userId, msg);
+  }
+  }
+}
+
+function InfoNickname(name,event){
+  const odata = require('./message/odata');
+  var nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
+  for (let i = 0; i < odata.sapRespond.d.results.length; i++) {
+  if(odata.sapRespond.d.results[i].Firstname.includes(nameCapitalized)){
+    var msg = {
+          "type": "flex",
+              "altText": "Flex Message",
+              "contents": {
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "SAP",
+                      "align": "center"
+                    }
+                  ]
+                },
+                "hero": {
+                  "type": "image",
+                  "url": "https://ics-chat-bot.herokuapp.com/image",
+                  "size": "5xl",
+                  "aspectRatio": "1.91:1",
+                  "aspectMode": "fit"
+                },
+                "body": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": odata.sapRespond.d.results[i].Firstname+"  "+odata.sapRespond.d.results[i].Lastname+"("+odata.sapRespond.d.results[i].Nickname+")",
+                      "align": "center",
+                      "weight": "bold",
+                      "size": "lg"
+                    },
+                    {
+                      "type": "separator",
+                      "margin": "lg"
+                    },
+                    {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "spacer"
+                        },
+                        {
+                          "type": "text",
+                          "text": "Tel:"+" "+odata.sapRespond.d.results[i].Tel
+                        },
+                        {
+                          "type": "text",
+                          "text": "Email:"+" "+odata.sapRespond.d.results[i].Email
+                        },
+                        {
+                          "type": "text",
+                          "text": "Birthdate:"+" "+odata.sapRespond.d.results[i].Birthdate
+                        },
+                        {
+                          "type": "text",
+                          "text": "Position:"+" "+odata.sapRespond.d.results[i].Position
+                        },
+                        {
+                          "type": "text",
+                          "text": "Line:"+" "+odata.sapRespond.d.results[i].Line
+                        }
+                      ]
+                    },
+                  ]
+                }
+              }
+      };
+      client.pushMessage(event.source.userId, msg);
+  }
+  }
+}
+
+
 
 function beacon(event,dm){
   var msg={
