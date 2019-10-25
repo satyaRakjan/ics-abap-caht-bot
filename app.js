@@ -104,20 +104,19 @@ function Intent(event){
   }else if(userSay.includes("media>")){
       client.pushMessage(event.source.userId, msg.broadcast);
   }else if(userSay.includes("train>")){
-    var request = require('sync-request');
-    var train = request('POST', 'https://line-liff-v2.herokuapp.com/new', {
+    const posttrain = request('POST', 'https://line-liff-v2.herokuapp.com/new', {
     json: {
       id: 3,
       message: "sattaya",
       reply: "Sir Crocodile"
   },
   });
-    var user = JSON.parse(train.getBody('utf8'));
+    var user = JSON.parse(posttrain.getBody('utf8'));
     console.log(user)
   }else{
-    const train = request("GET", "https://line-liff-v2.herokuapp.com/intent", {
+    const getIntent = request("GET", "https://line-liff-v2.herokuapp.com/intent", {
     });
-    var trainbot = JSON.parse(train.getBody());
+    var trainbot = JSON.parse(getIntent.getBody());
     for (let i = 0; i < trainbot.length; i++) {
       if(userSay.includes(trainbot[i].message)){
          var intentmsg =trainbot[i].reply
