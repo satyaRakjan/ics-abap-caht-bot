@@ -105,16 +105,17 @@ function Intent(event){
   }else if(userSay.includes("media>")){
       client.pushMessage(event.source.userId, msg.broadcast);
   }else if(userSay.includes("train>")){
-    var a =Intent.getIntent.length
-    console.log(a)
-  //   const posttrain = request('POST', 'https://line-liff-v2.herokuapp.com/new', {
-  //         json: {
-  //           id: 3,
-  //           message: "sattaya",
-  //           reply: "Sir Crocodile"
-  //       },
-  // });
-  //   JSON.parse(posttrain.getBody('utf8'));
+    var index =Intent.getIntent.length
+    var message = a[1];
+    var reply = a[2];
+    const posttrain = request('POST', 'https://line-liff-v2.herokuapp.com/new', {
+          json: {
+            id: index+1,
+            message: message,
+            reply: reply
+        },
+  });
+    JSON.parse(posttrain.getBody('utf8'));
   }else{
     for (let i = 0; i < Intent.getIntent.length; i++) {
       if(userSay.includes(Intent.getIntent[i].message)){
