@@ -103,6 +103,11 @@ function Intent(event){
        broadcast(event)
   }else if(userSay.includes("media>")){
       client.pushMessage(event.source.userId, msg.broadcast);
+  }else{
+    const train = request("GET", "https://line-liff-v2.herokuapp.com/intent", {
+    });
+    var trainbot = JSON.parse(train.getBody());
+    console.log(trainbot)
   }
 }
 
