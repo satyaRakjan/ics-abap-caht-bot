@@ -63,6 +63,7 @@ function handleEvent(event) {
 function Intent(event){
   const msg = require('./message/messageText');
   const day = require('./message/holiday');
+  const Intent = require('./message/trainbot');
 
   var doc = nlp(event.message.text)
   var a =doc.terms().out('array')
@@ -105,21 +106,17 @@ function Intent(event){
       client.pushMessage(event.source.userId, msg.broadcast);
   }else if(userSay.includes("train>")){
     const posttrain = request('POST', 'https://line-liff-v2.herokuapp.com/new', {
-    json: {
-      id: 3,
-      message: "sattaya",
-      reply: "Sir Crocodile"
-  },
+          json: {
+            id: 3,
+            message: "sattaya",
+            reply: "Sir Crocodile"
+        },
   });
-    var user = JSON.parse(posttrain.getBody('utf8'));
-    console.log(user)
+    JSON.parse(posttrain.getBody('utf8'));
   }else{
-    const getIntent = request("GET", "https://line-liff-v2.herokuapp.com/intent", {
-    });
-    var trainbot = JSON.parse(getIntent.getBody());
-    for (let i = 0; i < trainbot.length; i++) {
-      if(userSay.includes(trainbot[i].message)){
-         var intentmsg =trainbot[i].reply
+    for (let i = 0; i <    Intent.getIntent.length; i++) {
+      if(userSay.includes(Intent.getIntent[i].message)){
+         var intentmsg =Intent.getIntent[i].reply
          var message={
           type: 'text',
           text: intentmsg
