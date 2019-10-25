@@ -111,7 +111,7 @@ function Intent(event){
       // console.log(trainbot[i].message)
       if(userSay.includes(trainbot[i].message)){
         console.log("OK")
-        client.pushMessage(event.source.userId, trainbot.reply);
+        client.pushMessage(event.source.userId, trainbot[i].reply);
       }else{
         console.log("fail")
 
