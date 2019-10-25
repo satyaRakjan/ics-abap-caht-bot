@@ -22,15 +22,15 @@ function handleEvent(event) {
         case 'text':
           return    Intent(event);
         case 'image':
-          return  brcontent(event);
+          return  broadcast(event);
         case 'video':
-          return  brcontent(event);
+          return  broadcast(event);
         case 'audio':
-          return  brcontent(event);
+          return  broadcast(event);
         case 'location':
-          return  brcontent(event);
+          return  broadcast(event);
         case 'sticker':
-          return  brcontent(event);
+          return  broadcast(event);
         default:
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       }
@@ -101,6 +101,8 @@ function Intent(event){
     InfoNickname(name,event)    
   }  else if(userSay.includes("br>")){
        broadcast(event)
+  }else if(userSay.includes("media>")){
+      client.pushMessage(event.source.userId, msg.broadcast);
   }
 }
 

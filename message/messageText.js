@@ -91,3 +91,35 @@ const help = {
   ]
   exports.shortcut = shortcut;
 
+  var broadcast =  [
+    {
+      "type": "text",
+      "text": "Please select your content for broadcast.",
+      "quickReply": {
+        "items": [
+          {
+            "type": "action",
+            "action": {
+              "type": "cameraRoll",
+              "label": "Camera Roll"
+            }
+          },
+          {
+            "type": "action",
+            "action": {
+              "type": "camera",
+              "label": "Camera"
+            }
+          },
+          {
+            "type": "action",
+            "action": {
+              "type": "location",
+              "label": "Location"
+            }
+          }
+        ]
+      }
+    }
+  ];
+  exports.broadcast = broadcast;
