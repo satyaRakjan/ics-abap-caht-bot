@@ -116,6 +116,8 @@ function Intent(event){
         },
   });
     JSON.parse(posttrain.getBody('utf8'));
+    client.pushMessage(event.source.userId, Intent.trainmsg);
+
   }else{
     for (let i = 0; i < Intent.getIntent.length; i++) {
       if(userSay.includes(Intent.getIntent[i].message)){
