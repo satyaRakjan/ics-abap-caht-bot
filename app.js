@@ -125,8 +125,8 @@ function Intent(event){
                 "type": "button",
                 "action": {
                   "type": "message",
-                  "label":  sapRespond.d.results[i].Firstname+" "+sapRespond.d.results[i].Lastname+" "+"("+sapRespond.d.results[i].Nickname+")"                  ,
-                  "text": "fn>"+sapRespond.d.results[i].Firstname
+                  "label":  odata.sapRespond.d.results[i].Firstname+" "+odata.sapRespond.d.results[i].Lastname+" "+"("+odata.sapRespond.d.results[i].Nickname+")"                  ,
+                  "text": "fn>"+odata.sapRespond.d.results[i].Firstname
                 }
               }
             ]
