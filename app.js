@@ -110,13 +110,11 @@ function Intent(event){
     for (let i = 0; i < trainbot.length; i++) {
       // console.log(trainbot[i].message)
       if(userSay.includes(trainbot[i].message)){
-        console.log("OK")
-        client.pushMessage(event.source.userId, trainbot[i].reply);
-      }else{
-        console.log("fail")
+         var msg =trainbot[i].reply
+         console.log(msg)
 
+        // client.pushMessage(event.source.userId, trainbot[i].reply);
       }
-
     }
   }
 }
