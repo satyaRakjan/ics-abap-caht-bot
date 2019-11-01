@@ -7,6 +7,8 @@ const app = express();
 const request = require('sync-request')
 const nlp = require('compromise')
 const client = new line.Client(config);
+const sheetsu = require('sheetsu-node');
+const clientsheet = sheetsu({ address: 'https://sheetsu.com/apis/v1.0su/29cf6044647b' })
 
 app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', line.middleware(config), (req, res) => {
@@ -68,7 +70,7 @@ function Intent(event){
   var doc = nlp(event.message.text)
   var a =doc.terms().out('array')
   var userSay = a[0];
-   if(userSay.includes("help>")){
+  if(userSay.includes("help>")){
       client.replyMessage(event.replyToken, msg.help);
   }else if(userSay.includes("command>")){
     client.replyMessage(event.replyToken, msg.command);
@@ -119,7 +121,21 @@ function Intent(event){
     client.pushMessage(event.source.userId, Intent.trainmsg);
 
   }else{
-    console.log("test")
+    clientsheet.read({ search: { Message: userSay } }).then(function(data) {
+      var obj = JSON.parse(data)
+      var MessageReply =null
+      if(obj[0].type=='text'){
+        var MessageReply ={
+          "type": "text",
+          "text": obj[0].MessageReply
+        }
+      }
+      client.pushMessage(event.source.userId, MessageReply);
+
+    }, function(err){
+      console.log(err);
+    });
+
     for (let i = 0; i < Intent.getIntent.length; i++) {
       if(userSay.includes(Intent.getIntent[i].message)){
          var intentmsg =Intent.getIntent[i].reply
