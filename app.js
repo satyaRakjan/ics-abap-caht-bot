@@ -8,7 +8,7 @@ const request = require('sync-request')
 const nlp = require('compromise')
 const client = new line.Client(config);
 const sheetsu = require('sheetsu-node');
-const clientsheet = sheetsu({ address: 'https://sheetsu.com/apis/v1.0su/29cf6044647b' })
+const clientsheet = sheetsu({ address:'https://sheetsu.com/apis/v1.0bu/7e219e429147' })
 
 app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', line.middleware(config), (req, res) => {
@@ -72,6 +72,8 @@ function Intent(event){
   var userSay = a[0];
   if(userSay.includes("help>")){
       client.replyMessage(event.replyToken, msg.help);
+  }else if(userSay.includes("command>")){
+    client.replyMessage(event.replyToken, msg.command);
   }else if(userSay.includes("register>")){
     client.replyMessage(event.replyToken, msg.register);
   }else if(userSay.includes("shortcut>")){
@@ -117,21 +119,20 @@ function Intent(event){
   });
     JSON.parse(posttrain.getBody('utf8'));
     client.pushMessage(event.source.userId, Intent.trainmsg);
+
   }else{
-    console.log(userSay)
     clientsheet.read({ search: { Message: "command" } }).then(function(data) {
       var obj = JSON.parse(data)
-      console.log(obj)
-
-      if(obj[0].type=='text'){
-         MessageReply ={
+      console.log(obj[0].MessageReply);
+      if(obj[0].TypeMessage=='text'){
+        var MessageReply = {
           "type": "text",
           "text": obj[0].MessageReply
         }
         client.pushMessage(event.source.userId, MessageReply);
 
       }
-
+   
     }, function(err){
       console.log(err);
     });
