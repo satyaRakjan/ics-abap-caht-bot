@@ -111,18 +111,17 @@ function Intent(event){
     clientsheet.read({ search: { Message: userSay} }).then(function(data) {
       var obj = JSON.parse(data)
       console.log(obj[0].MessageReply);
+      var MessageReply = "";
       if(obj[0].TypeMessage=='text'){
-        var MessageReply = {
+         MessageReply == {
           "type": "text",
           "text": obj[0].MessageReply
         }
-        client.pushMessage(event.source.userId, MessageReply);
       }else if(obj[0].TypeMessage=='flex'){
-        var test = obj[0].MessageReply
-        client.pushMessage(event.source.userId,test);
-        client.pushMessage(event.source.userId, day.holiday);
-
+         MessageReply == obj[0].MessageReply
       }
+      client.pushMessage(event.source.userId, MessageReply);
+
    
     }, function(err){
       console.log(err);
