@@ -117,6 +117,9 @@ function Intent(event){
           "text": obj[0].MessageReply
         }
         client.pushMessage(event.source.userId, MessageReply);
+      }else if(obj[0].TypeMessage=='flex'){
+        client.pushMessage(event.source.userId, obj[0].MessageReply);
+
       }
    
     }, function(err){
