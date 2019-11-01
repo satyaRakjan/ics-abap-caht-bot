@@ -118,7 +118,9 @@ function Intent(event){
         }
         client.pushMessage(event.source.userId, MessageReply);
       }else if(obj[0].TypeMessage=='flex'){
-        client.pushMessage(event.source.userId, obj[0].MessageReply);
+        var test = obj[0].MessageReply
+        client.pushMessage(event.source.userId,test);
+        client.pushMessage(event.source.userId, day.holiday);
 
       }
    
