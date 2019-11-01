@@ -72,8 +72,6 @@ function Intent(event){
   var userSay = a[0];
   if(userSay.includes("help>")){
       client.replyMessage(event.replyToken, msg.help);
-  }else if(userSay.includes("command>")){
-    client.replyMessage(event.replyToken, msg.command);
   }else if(userSay.includes("register>")){
     client.replyMessage(event.replyToken, msg.register);
   }else if(userSay.includes("shortcut>")){
@@ -122,6 +120,7 @@ function Intent(event){
 
   }else{
     clientsheet.read({ search: { Message: userSay } }).then(function(data) {
+      console.log(userSay)
       var obj = JSON.parse(data)
       var MessageReply =null
       if(obj[0].type=='text'){
