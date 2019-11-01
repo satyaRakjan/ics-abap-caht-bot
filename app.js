@@ -110,9 +110,8 @@ function Intent(event){
   }else{
     clientsheet.read({ search: { Message: userSay} }).then(function(data) {
       var obj = JSON.parse(data)
-      var MessageReply = "";
       if(obj[0].TypeMessage=='text'){
-         MessageReply == {
+        var MessageReply = {
           "type": "text",
           "text": obj[0].MessageReply
 
@@ -120,7 +119,7 @@ function Intent(event){
         client.pushMessage(event.source.userId, MessageReply);
 
       }else if(obj[0].TypeMessage=='flex'){
-         MessageReply == obj[0].MessageReply
+        var MessageReply = obj[0].MessageReply
          client.pushMessage(event.source.userId, MessageReply);
 
       }
