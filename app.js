@@ -72,8 +72,6 @@ function Intent(event){
   var userSay = a[0];
   if(userSay.includes("help>")){
       client.replyMessage(event.replyToken, msg.help);
-  }else if(userSay.includes("command>")){
-    client.replyMessage(event.replyToken, msg.command);
   }else if(userSay.includes("register>")){
     client.replyMessage(event.replyToken, msg.register);
   }else if(userSay.includes("shortcut>")){
@@ -130,7 +128,6 @@ function Intent(event){
           "text": obj[0].MessageReply
         }
         client.pushMessage(event.source.userId, MessageReply);
-
       }
    
     }, function(err){
