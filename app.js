@@ -127,6 +127,12 @@ function Intent(event){
 
    
     }, function(err){
+      var MessageReply = {
+        "type": "text",
+        "text":"กรุณาลองใหม่อีกครั้ง"
+
+      }
+      client.pushMessage(event.source.userId, MessageReply);
       console.log(err);
     });
   }
