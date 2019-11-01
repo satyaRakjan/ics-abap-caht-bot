@@ -124,7 +124,7 @@ function Intent(event){
       var obj = JSON.parse(data)
       var MessageReply =null
       if(obj[0].type=='text'){
-        var MessageReply ={
+         MessageReply ={
           "type": "text",
           "text": obj[0].MessageReply
         }
