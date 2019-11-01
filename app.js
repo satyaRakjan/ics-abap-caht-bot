@@ -121,7 +121,7 @@ function Intent(event){
     client.pushMessage(event.source.userId, Intent.trainmsg);
 
   }else{
-    clientsheet.read({ search: { Message: "command" } }).then(function(data) {
+    clientsheet.read({ search: { Message: userSay} }).then(function(data) {
       var obj = JSON.parse(data)
       console.log(obj[0].MessageReply);
       if(obj[0].TypeMessage=='text'){
