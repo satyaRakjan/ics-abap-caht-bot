@@ -133,17 +133,6 @@ function Intent(event){
     }, function(err){
       console.log(err);
     });
-
-    for (let i = 0; i < Intent.getIntent.length; i++) {
-      if(userSay.includes(Intent.getIntent[i].message)){
-         var intentmsg =Intent.getIntent[i].reply
-         var message={
-          type: 'text',
-          text: intentmsg
-        };
-        client.pushMessage(event.source.userId, message);
-      }
-    }
   }
 }
 
