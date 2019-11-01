@@ -110,17 +110,20 @@ function Intent(event){
   }else{
     clientsheet.read({ search: { Message: userSay} }).then(function(data) {
       var obj = JSON.parse(data)
-      console.log(obj[0].MessageReply);
       var MessageReply = "";
       if(obj[0].TypeMessage=='text'){
          MessageReply == {
           "type": "text",
           "text": obj[0].MessageReply
+
         }
+        client.pushMessage(event.source.userId, MessageReply);
+
       }else if(obj[0].TypeMessage=='flex'){
          MessageReply == obj[0].MessageReply
+         client.pushMessage(event.source.userId, MessageReply);
+
       }
-      client.pushMessage(event.source.userId, MessageReply);
 
    
     }, function(err){
