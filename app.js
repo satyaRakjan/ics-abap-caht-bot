@@ -118,17 +118,17 @@ function Intent(event){
     JSON.parse(posttrain.getBody('utf8'));
     client.pushMessage(event.source.userId, Intent.trainmsg);
   }else{
-    console.log(userSay)
     clientsheet.read({ search: { Message: userSay } }).then(function(data) {
       var obj = JSON.parse(data)
-      var MessageReply =null
+      console.log(obj)
       if(obj[0].type=='text'){
          MessageReply ={
           "type": "text",
           "text": obj[0].MessageReply
         }
+        client.pushMessage(event.source.userId, MessageReply);
+
       }
-      client.pushMessage(event.source.userId, MessageReply);
 
     }, function(err){
       console.log(err);
