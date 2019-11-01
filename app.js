@@ -65,7 +65,6 @@ function handleEvent(event) {
 function Intent(event){
   const msg = require('./message/messageText');
   const day = require('./message/holiday');
-  const Intent = require('./message/trainbot');
 
   var doc = nlp(event.message.text)
   var a =doc.terms().out('array')
@@ -108,16 +107,6 @@ function Intent(event){
     var index =Intent.getIntent.length
     var message = a[1];
     var reply = a[2];
-    const posttrain = request('POST', 'https://line-liff-v2.herokuapp.com/new', {
-          json: {
-            id: index+1,
-            message: message,
-            reply: reply
-        },
-  });
-    JSON.parse(posttrain.getBody('utf8'));
-    client.pushMessage(event.source.userId, Intent.trainmsg);
-
   }else{
     clientsheet.read({ search: { Message: userSay} }).then(function(data) {
       var obj = JSON.parse(data)
