@@ -65,7 +65,6 @@ function handleEvent(event) {
 function Intent(event){
   const msg = require('./message/messageText');
   const day = require('./message/holiday');
-
   var doc = nlp(event.message.text)
   var a =doc.terms().out('array')
   var userSay = a[0];
@@ -79,6 +78,7 @@ function Intent(event){
     client.pushMessage(event.source.userId, day.holiday);
   }
   else if(userSay.includes("today>")){
+    console.log(day)
     for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
       if(day.date === day.holidayRespond.result.data[i].Date){
           var message={
@@ -104,7 +104,6 @@ function Intent(event){
   }else if(userSay.includes("media>")){
       client.pushMessage(event.source.userId, msg.broadcast);
   }else if(userSay.includes("train>")){
-    var index =Intent.getIntent.length
     var message = a[1];
     var reply = a[2];
   }else{
