@@ -76,9 +76,10 @@ function Intent(event){
     client.pushMessage(event.source.userId, msg.shortcut);
   } else if(userSay.includes("holiday>")){
     client.pushMessage(event.source.userId, day.holiday);
+    console.log(day.holiday)
+
   }
   else if(userSay.includes("today>")){
-    console.log(day)
     for (let i = 0; i <day.holidayRespond.result.data.length; i++) {
       if(day.date === day.holidayRespond.result.data[i].Date){
           var message={
