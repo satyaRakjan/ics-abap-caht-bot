@@ -119,7 +119,7 @@ function Intent(event){
         client.pushMessage(event.source.userId, MessageReply);
 
       }else if(obj[0].TypeMessage=='flex'){
-        console.log("test")
+        console.log(obj[0].MessageReply)
         var MessageReply = obj[0].MessageReply
          client.pushMessage(event.source.userId, MessageReply);
 
