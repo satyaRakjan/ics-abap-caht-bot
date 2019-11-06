@@ -121,6 +121,7 @@ function Intent(event){
         var MessageReply =  JSON.parse(obj[0].MessageReply)
          client.pushMessage(event.source.userId, MessageReply);
       }else if(obj[0].TypeMessage=='vote'){
+        console.log(obj[0].MessageReply)
         var MessageReply =  JSON.parse(obj[0].MessageReply)
         client.pushMessage(event.source.userId, MessageReply);
       }
