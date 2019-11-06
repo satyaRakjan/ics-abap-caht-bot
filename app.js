@@ -9,6 +9,8 @@ const nlp = require('compromise')
 const client = new line.Client(config);
 const sheetsu = require('sheetsu-node');
 const clientsheet = sheetsu({ address:'https://sheetsu.com/apis/v1.0bu/7e219e429147' })
+const admin = require("firebase-admin");
+const serviceAccount = require("./service/firebasekey.json");
 
 app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', line.middleware(config), (req, res) => {
@@ -51,11 +53,12 @@ function handleEvent(event) {
 
     case 'postback':
       let data = event.postback.data;
-      var doc = nlp(data)
-      var a =doc.terms().out('array')
-      var test = a[0];
-      console.log(test)
-      return replyText(event.replyToken, `Got postback: ${data}`);
+      console.log(JSON.stringify(event))
+      // var doc = nlp(data)
+      // var a =doc.terms().out('array')
+      // var test = a[0];
+      // console.log(test)
+      // return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
       const dm = `${Buffer.from(event.beacon.dm || '', 'hex').toString('utf8')}`;
