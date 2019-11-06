@@ -63,9 +63,9 @@ function handleEvent(event) {
       // var test = a[0]
       // console.log(test)
       var db = admin.database();
-      var ref = db.ref("vote2");
+      var ref = db.ref("vote2/result");
       ref.on("value", function(snapshot) {
-        console.log("test"+snapshot.val());
+        console.log(snapshot.val());
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
