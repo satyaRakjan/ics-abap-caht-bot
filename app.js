@@ -117,13 +117,12 @@ function Intent(event){
 
         }
         client.pushMessage(event.source.userId, MessageReply);
-
       }else if(obj[0].TypeMessage=='flex'){
         var MessageReply =  JSON.parse(obj[0].MessageReply)
-        console.log(MessageReply)
-
          client.pushMessage(event.source.userId, MessageReply);
-
+      }else if(obj[0].TypeMessage=='vote'){
+        var MessageReply =  JSON.parse(obj[0].MessageReply)
+        client.pushMessage(event.source.userId, MessageReply);
       }
 
    
