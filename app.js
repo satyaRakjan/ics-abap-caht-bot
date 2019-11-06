@@ -51,7 +51,8 @@ function handleEvent(event) {
 
     case 'postback':
       let data = event.postback.data;
-      var a =data.terms().out('array')
+      var doc = nlp(data)
+      var a =doc.terms().out('array')
       var test = a[0];
       console.log(test)
       return replyText(event.replyToken, `Got postback: ${data}`);
