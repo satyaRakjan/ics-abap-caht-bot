@@ -58,7 +58,15 @@ function handleEvent(event) {
       // var a =doc.terms().out('array')
       // var test = a[0];
       // console.log(test)
-      // return replyText(event.replyToken, `Got postback: ${data}`);
+      var db = admin.database();
+      var ref = db.ref("vote2");
+      ref.on("value", function(snapshot) {
+        console.log(snapshot.val());
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+
+      return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
       const dm = `${Buffer.from(event.beacon.dm || '', 'hex').toString('utf8')}`;
