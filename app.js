@@ -62,8 +62,8 @@ function handleEvent(event) {
       var dataName = a[0]
       var db = admin.database();
       var ref = db.ref(dataName);
-      var usersRef = ref.child(event.source.userId);
-      console.log(usersRef)
+      console.log(event.source.userId)
+      var usersRef = ref.child("lineID");
       usersRef.set({
         value: "1"
       });
