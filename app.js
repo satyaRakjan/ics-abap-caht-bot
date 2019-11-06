@@ -62,11 +62,17 @@ function handleEvent(event) {
       var dataName = a[0]
       var db = admin.database();
       var ref = db.ref(dataName);
-      ref.on("value", function(snapshot) {
-        console.log(snapshot.val());
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+      var usersRef = ref.child(event.source.userId);
+      console.log(usersRef)
+      usersRef.set({
+        value: "1"
       });
+
+      // ref.on("value", function(snapshot) {
+      //   console.log(snapshot.val());
+      // }, function (errorObject) {
+      //   console.log("The read failed: " + errorObject.code);
+      // });
 
       return replyText(event.replyToken, `Got postback: ${data}`);
 
