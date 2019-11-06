@@ -56,14 +56,12 @@ function handleEvent(event) {
       return console.log(`Left: ${JSON.stringify(event)}`);
 
     case 'postback':
-      let data = event.postback.data;
       console.log(JSON.stringify(event))
-      // var doc = nlp(data)
-      // var a =doc.terms().out('array')
-      // var test = a[0]
-      // console.log(test)
+      var doc = nlp(event.postback.data)
+      var a =doc.terms().out('array')
+      var dataName = a[0]
       var db = admin.database();
-      var ref = db.ref("vote2/result");
+      var ref = db.ref(dataName);
       ref.on("value", function(snapshot) {
         console.log(snapshot.val());
       }, function (errorObject) {
