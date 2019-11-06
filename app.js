@@ -18,7 +18,6 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 function handleEvent(event) {
-  console.log(event.type)
   switch (event.type) {
     case 'message':
       switch (event.message.type) {
@@ -52,6 +51,7 @@ function handleEvent(event) {
 
     case 'postback':
       let data = event.postback.data;
+      console.log(data)
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
