@@ -11,6 +11,10 @@ const sheetsu = require('sheetsu-node');
 const clientsheet = sheetsu({ address:'https://sheetsu.com/apis/v1.0bu/7e219e429147' })
 const admin = require("firebase-admin");
 const serviceAccount = require("./service/firebasekey.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://ics-vote.firebaseio.com"
+});
 
 app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', line.middleware(config), (req, res) => {
@@ -56,7 +60,7 @@ function handleEvent(event) {
       console.log(JSON.stringify(event))
       // var doc = nlp(data)
       // var a =doc.terms().out('array')
-      // var test = a[0];
+      // var test = a[0]
       // console.log(test)
       var db = admin.database();
       var ref = db.ref("vote2");
