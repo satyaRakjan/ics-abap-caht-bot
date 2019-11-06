@@ -18,6 +18,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 });
 
 function handleEvent(event) {
+  console.log(event.type)
   switch (event.type) {
     case 'message':
       switch (event.message.type) {
@@ -121,7 +122,6 @@ function Intent(event){
         var MessageReply =  JSON.parse(obj[0].MessageReply)
          client.pushMessage(event.source.userId, MessageReply);
       }else if(obj[0].TypeMessage=='vote'){
-        console.log(obj[0].MessageReply)
         var MessageReply =  JSON.parse(obj[0].MessageReply)
         client.pushMessage(event.source.userId, MessageReply);
       }
