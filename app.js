@@ -61,7 +61,7 @@ function handleEvent(event) {
       var a =doc.terms().out('array')
       var dataName = a[0]
       var db = admin.database();
-      console.log(event.postback.data)
+      console.log(event.postback)
       // var ref = db.ref(dataName+"/result");
       // var lineID =event.source.userId
       // var usersRef = ref.child(lineID);
