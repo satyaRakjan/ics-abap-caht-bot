@@ -59,13 +59,15 @@ function handleEvent(event) {
       console.log(JSON.stringify(event))
       var doc = nlp(event.postback.data)
       var a =doc.terms().out('array')
-      var dataName = a[0]
+      var dataName = a[0];
+      var value = a[1]
       var db = admin.database();
       var ref = db.ref(dataName+"/result");
       var lineID =event.source.userId
       var usersRef = ref.child(lineID);
       usersRef.set({
-        value: "1"
+        value: value,
+        lineID:lineID
       });
 
       // ref.on("value", function(snapshot) {
