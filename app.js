@@ -62,28 +62,14 @@ function handleEvent(event) {
       var value = a[1];
       var lineID =event.source.userId;
       var db = admin.database();
-      var ref = db.ref(dataName+"/result/");
+      var ref = db.ref(dataName+"/result");
       // var usersRef = ref.child(lineID);
       // usersRef.set({
       //   value: value,
       //   lineID:lineID
       // });
-
-      ref.on("value", function(snapshot) {
-        console.log(snapshot.val());
-        var key  = snapshot.key; 
-        var childKey = snapshot.child(lineID).key; // "last"
-        if(childKey == lineID ){
-          console.log("null");
-
-        }else{
-          console.log("Ok");
-
-        }
-        console.log(childKey);
-
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+      ref.orderByChild("test").on("child_added", function(snapshot) {
+        console.log(snapshot.key + " was " + snapshot.val().lineID + " meters tall");
       });
 
       return replyText(event.replyToken, `Got postback: ${data}`);
