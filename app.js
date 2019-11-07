@@ -70,7 +70,14 @@ function handleEvent(event) {
       // });
 
       ref.orderByKey().equalTo(lineID).on("child_added", function(snapshot) {
-        console.log(snapshot.key);
+        var key = snapshot.key;
+        if(key==lineID){
+          console.log("added");
+
+        }else{
+          console.log("null");
+
+        }
       });
 
       // ref.orderByChild("test/lineID").equalTo("test").on("child_added", function(snapshot) {
