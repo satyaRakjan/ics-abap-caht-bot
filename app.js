@@ -72,7 +72,7 @@ function handleEvent(event) {
       //   console.log(snapshot.key);
       // });
 
-      ref.orderByChild(lineID+"lineID").equalTo(lineID).on("child_added", function(snapshot) {
+      ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("child_added", function(snapshot) {
           var val = snapshot.val().lineID;
           console.log("sanp:"+val);
           console.log(snapshot.key);
