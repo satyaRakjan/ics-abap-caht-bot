@@ -68,17 +68,13 @@ function handleEvent(event) {
       //   value: value,
       //   lineID:lineID
       // });
+
       ref.orderByChild(lineID).on("child_added", function(snapshot) {
-        if(lineID == snapshot.val().lineID){
-          console.log(snapshot.val().lineID)
-        }else{
-          console.log("null")
-            var usersRef = ref.child(lineID);
-                usersRef.set({
-                  value: value,
-                  lineID:lineID
-                });
-        }
+          var val = snapshot.val().lineID;
+          console.log("sanp:"+val);
+          console.log("ID:"+lineID);
+
+          
 
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
