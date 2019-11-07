@@ -70,7 +70,7 @@ function handleEvent(event) {
       // });
       ref.orderByChild(lineID).on("child_added", function(snapshot) {
         if(lineID == snapshot.val().lineID){
-          console.log("added")
+          console.log(snapshot.val().lineID)
         }else{
           console.log("null")
             var usersRef = ref.child(lineID);
