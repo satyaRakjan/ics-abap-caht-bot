@@ -68,15 +68,8 @@ function handleEvent(event) {
       //   value: value,
       //   lineID:lineID
       // });
-      // ref.orderByChild("height").equalTo(25).on("child_added", function(snapshot) {
-      //   console.log(snapshot.key);
-      // });
-      // https://ics-vote.firebaseio.com/votetest/result/test/lineID
-      // ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("value", function(snapshot) {
-      //   console.log(snapshot.val());
-      // });
 
-      ref.orderByChild(lineID+"/lineID/").on("value", function(snapshot) {
+      ref.orderByChild(lineID).on("child_added", function(snapshot) {
           var val = snapshot.val().lineID;
           console.log("sanp:"+val);
       }, function (errorObject) {
