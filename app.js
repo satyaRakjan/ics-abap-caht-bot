@@ -71,6 +71,9 @@ function handleEvent(event) {
 
       ref.on("value", function(snapshot) {
         console.log(snapshot.val());
+        var childKey = snapshot.child(lineID).key; // "last"
+        console.log(childKey);
+
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
