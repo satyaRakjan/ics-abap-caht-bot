@@ -68,13 +68,10 @@ function handleEvent(event) {
       //   value: value,
       //   lineID:lineID
       // });
-      // ref.orderByKey()("test").on("child_added", function(snapshot) {
-      //   console.log(snapshot.key + " was " + snapshot.val().lineID + " meters tall");
-      // });
-      ref.orderByKey("test").on("child_added", function(snapshot) {
-        console.log(snapshot.val());
+      ref.orderByChild("test").on("child_added", function(snapshot) {
+        console.log(snapshot.key + " was " + snapshot.val().value + " meters tall");
       });
-
+   
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
