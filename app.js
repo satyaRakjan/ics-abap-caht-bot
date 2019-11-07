@@ -68,17 +68,14 @@ function handleEvent(event) {
         //     value: value,
         //     lineID:lineID
         //   }); 
-      ref.orderByKey().equalTo(lineID).on("child_added", function (snapshot) {
-          if(snapshot.val() !== null){
-            console.log("test")
-          }else{
-            console.log("null")
+      ref.orderByKey().equalTo(lineID).on("child_added").then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log("test1")
 
-          }
-  
-        var key = snapshot.key;
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+        }
+        else {
+          console.log("test")
+        }
       });
 
 
