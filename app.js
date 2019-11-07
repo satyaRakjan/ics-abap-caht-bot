@@ -62,14 +62,14 @@ function handleEvent(event) {
       var value = a[1];
       var lineID =event.source.userId;
       var db = admin.database();
-      var ref = db.ref(dataName+"/result/");
+      var ref = db.ref(dataName+"/result/"+lineID);
       // var usersRef = ref.child(lineID);
       // usersRef.set({
       //   value: value,
       //   lineID:lineID
       // });
 
-      ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("child_added", function(snapshot) {
+      ref.orderByChild("lineID").equalTo(lineID).on("child_added", function(snapshot) {
         console.log(snapshot.key);
       });
 
