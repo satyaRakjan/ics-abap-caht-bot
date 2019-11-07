@@ -59,10 +59,10 @@ function handleEvent(event) {
       var doc = nlp(event.postback.data)
       var a =doc.terms().out('array')
       var dataName = a[0];
-      var value = a[1]
+      var value = a[1];
+      var lineID =event.source.userId;
       var db = admin.database();
-      var ref = db.ref(dataName+"/result");
-      var lineID =event.source.userId
+      var ref = db.ref(dataName+"/result/"+lineID);
       // var usersRef = ref.child(lineID);
       // usersRef.set({
       //   value: value,
