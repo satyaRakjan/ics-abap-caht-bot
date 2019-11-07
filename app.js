@@ -69,14 +69,14 @@ function handleEvent(event) {
         //     lineID:lineID
         //   }); 
       ref.orderByKey().equalTo(lineID).on("child_added", function (snapshot) {
-        var exists = (snapshot.val() !== null);
-        if(exists){
-          console.log("1");
+        if (snapshot.exists) {
+         console.log("1")
+      }
+      else {
+        console.log("2")
 
-        }else{
-          console.log("2");
-
-        }
+           // handle the case where query finds zero(0) results 
+      }
         var key = snapshot.key;
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
