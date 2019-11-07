@@ -69,7 +69,7 @@ function handleEvent(event) {
       //   lineID:lineID
       // });
 
-      ref.orderByKey().on("child_added", function(snapshot) {
+      ref.orderByKey().equalTo(lineID).on("child_added", function(snapshot) {
         console.log(snapshot.key);
       });
 
