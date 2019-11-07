@@ -70,8 +70,9 @@ function handleEvent(event) {
       // });
       ref.orderByChild(lineID).on("child_added", function(snapshot) {
         console.log(snapshot.key + " was " + snapshot.val().value + " meters tall");
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
       });
-   
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
