@@ -64,17 +64,17 @@ function handleEvent(event) {
       var db = admin.database();
       var ref = db.ref(dataName+"/result");
       var lineID =event.source.userId
-      var usersRef = ref.child(lineID);
-      usersRef.set({
-        value: value,
-        lineID:lineID
-      });
-
-      // ref.on("value", function(snapshot) {
-      //   console.log(snapshot.val());
-      // }, function (errorObject) {
-      //   console.log("The read failed: " + errorObject.code);
+      // var usersRef = ref.child(lineID);
+      // usersRef.set({
+      //   value: value,
+      //   lineID:lineID
       // });
+
+      ref.on(lineID, function(snapshot) {
+        console.log(snapshot.val());
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
 
       return replyText(event.replyToken, `Got postback: ${data}`);
 
