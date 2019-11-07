@@ -56,7 +56,6 @@ function handleEvent(event) {
       return console.log(`Left: ${JSON.stringify(event)}`);
 
     case 'postback':
-      console.log(JSON.stringify(event))
       var doc = nlp(event.postback.data)
       var a =doc.terms().out('array')
       var dataName = a[0];
@@ -70,7 +69,7 @@ function handleEvent(event) {
       //   lineID:lineID
       // });
 
-      ref.on(lineID, function(snapshot) {
+      ref.on("value", function(snapshot) {
         console.log(snapshot.val());
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
