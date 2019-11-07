@@ -68,11 +68,14 @@ function handleEvent(event) {
       //   value: value,
       //   lineID:lineID
       // });
+      // ref.orderByChild("height").equalTo(25).on("child_added", function(snapshot) {
+      //   console.log(snapshot.key);
+      // });
 
-      ref.orderByChild(lineID).on("child_added", function(snapshot) {
+      ref.orderByChild(lineID).equalTo(lineID).on("child_added", function(snapshot) {
           var val = snapshot.val().lineID;
           console.log("sanp:"+val);
-          console.log("ID:"+lineID);
+          console.log(snapshot.key);
 
           
 
