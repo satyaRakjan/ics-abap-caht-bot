@@ -72,7 +72,9 @@ function handleEvent(event) {
       ref.on("value", function(snapshot) {
         console.log(snapshot.val());
         var key  = snapshot.key; 
-        console.log(key);
+        var childKey = snapshot.child("test").key; // "last"
+
+        console.log(childKey);
 
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
