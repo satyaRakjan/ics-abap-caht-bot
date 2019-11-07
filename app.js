@@ -72,8 +72,14 @@ function handleEvent(event) {
       ref.on("value", function(snapshot) {
         console.log(snapshot.val());
         var key  = snapshot.key; 
-        var childKey = snapshot.child("test").key; // "last"
+        var childKey = snapshot.child(lineID).key; // "last"
+        if(childKey == lineID ){
+          console.log("null");
 
+        }else{
+          console.log("Ok");
+
+        }
         console.log(childKey);
 
       }, function (errorObject) {
