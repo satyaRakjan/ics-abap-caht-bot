@@ -71,17 +71,18 @@ function handleEvent(event) {
       // ref.orderByChild("height").equalTo(25).on("child_added", function(snapshot) {
       //   console.log(snapshot.key);
       // });
-
-      ref.orderByChild(lineID+"/lineID/").equalTo(lineID).on("child_added", function(snapshot) {
-          var val = snapshot.val().lineID;
-          console.log("sanp:"+val);
-          console.log(snapshot.key);
-
-          
-
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+      // https://ics-vote.firebaseio.com/votetest/result/test/lineID
+      ref.orderByChild("test/lineID").equalTo("test").on("child_added", function(snapshot) {
+        console.log(snapshot.key);
       });
+
+      // ref.orderByChild(lineID+"/lineID/").equalTo(lineID).on("child_added", function(snapshot) {
+      //     var val = snapshot.val().lineID;
+      //     console.log("sanp:"+val);
+      //     console.log(snapshot.key);
+      // }, function (errorObject) {
+      //   console.log("The read failed: " + errorObject.code);
+      // });
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
