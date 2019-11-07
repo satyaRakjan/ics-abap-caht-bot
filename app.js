@@ -62,7 +62,7 @@ function handleEvent(event) {
       var value = a[1];
       var lineID =event.source.userId;
       var db = admin.database();
-      var ref = db.ref(dataName+"/result/"+lineID);
+      var ref = db.ref(dataName+"/result/"+lineID+"/");
       // var usersRef = ref.child(lineID);
       // usersRef.set({
       //   value: value,
