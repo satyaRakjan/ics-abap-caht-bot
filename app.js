@@ -68,15 +68,14 @@ function handleEvent(event) {
         //     value: value,
         //     lineID:lineID
         //   }); 
-      ref.orderByKey().equalTo(lineID).on("child_added", function (snapshot) {
-        var a = snapshot.exists(); 
-          console.log("check"+a)
-  
-        var key = snapshot.key;
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      });
+      ref.orderByKey().equalTo(lineID).on("child_added").then(function(snapshot) {
+        if (!snapshot.exists()) {
+          console.log("ok");
+        }else{
+          console.log("exit");
 
+        }
+      });
 
       return replyText(event.replyToken, `Got postback: ${data}`);
 
