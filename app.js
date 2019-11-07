@@ -62,15 +62,15 @@ function handleEvent(event) {
       var value = a[1];
       var lineID =event.source.userId;
       var db = admin.database();
-      var ref = db.ref(dataName+"/result/"+lineID+"/");
+      var ref = db.ref(dataName+"/result/");
       // var usersRef = ref.child(lineID);
       // usersRef.set({
       //   value: value,
       //   lineID:lineID
       // });
 
-      ref.orderByChild("lineID").equalTo(lineID).on("child_added", function(snapshot) {
-        console.log(snapshot.val());
+      ref.orderByChild(lineID+"/Line").equalTo(lineID).on("child_added", function(snapshot) {
+        console.log(snapshot);
       });
 
       // ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("value", function(snapshot) {
