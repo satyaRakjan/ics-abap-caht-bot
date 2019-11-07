@@ -77,8 +77,10 @@ function handleEvent(event) {
           console.log("add") 
         }
       }, function (errorObject) {
-        console.log("The read failed: ");
+        console.log("The read failed: " + errorObject.code);
       });
+
+
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
