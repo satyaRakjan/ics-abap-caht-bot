@@ -69,13 +69,13 @@ function handleEvent(event) {
         //     lineID:lineID
         //   }); 
       ref.orderByKey().equalTo(lineID).on("child_added", function (snapshot) {
-        if (!snapshot.exists()) {
-          console.log("There are no birthdays on or after ");
-        }
-        else {
-          snapshot.forEach(function(daySnapshot) {
-            console.log("There is a birthday on ");
-          });
+        var exists = (snapshot.val() !== null);
+        if(exists){
+          console.log("1");
+
+        }else{
+          console.log("2");
+
         }
         var key = snapshot.key;
       }, function (errorObject) {
