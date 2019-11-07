@@ -69,12 +69,9 @@ function handleEvent(event) {
         //     lineID:lineID
         //   }); 
       ref.orderByKey().equalTo(lineID).on("child_added", function (snapshot) {
-        if(snapshot.exists()){
-          console.log("exist")
-        }else{
-          console.log("notexist")
-
-        }
+        var a = snapshot.exists(); 
+          console.log("check"+a)
+  
         var key = snapshot.key;
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
