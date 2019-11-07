@@ -69,13 +69,13 @@ function handleEvent(event) {
       //   lineID:lineID
       // });
 
-    //   playersRef.orderByChild("name").equalTo("John").on("child_added", function(data) {
-    //     console.log("Equal to filter: " + data.val().name);
-    //  });
-
-      ref.orderByChild("test/lineID").equalTo("test").on("child_added", function(snapshot) {
-        console.log(snapshot.val());
+      ref.orderByKey().on("child_added", function(snapshot) {
+        console.log(snapshot.key);
       });
+
+      // ref.orderByChild("test/lineID").equalTo("test").on("child_added", function(snapshot) {
+      //   console.log(snapshot.val());
+      // });
 
       // ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("value", function(snapshot) {
       //     var val = snapshot.val().lineID;
