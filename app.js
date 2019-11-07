@@ -72,7 +72,7 @@ function handleEvent(event) {
       //   console.log(snapshot.key);
       // });
       // https://ics-vote.firebaseio.com/votetest/result/test/lineID
-      ref.orderByChild("test/lineID").equalTo("test").on("child_added", function(snapshot) {
+      ref.orderByChild("test/lineID").equalTo("test").on("value", function(snapshot) {
         console.log(snapshot.key);
       });
 
