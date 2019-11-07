@@ -63,25 +63,21 @@ function handleEvent(event) {
       var lineID =event.source.userId;
       var db = admin.database();
       var ref = db.ref(dataName+"/result/");
-      ref.orderByKey().equalTo(lineID).on("child_added", function (snapshot) {
-        var key = snapshot.key;
-        if(snapshot){
-          console.log("ok")
-        }else{
-          console.log("no")
-
-        }
-        // if(key==lineID){
-        //   console.log("added") 
-
-        // }else{
-        //   var usersRef = ref.child(lineID);
+            //   var usersRef = ref.child(lineID);
         //   usersRef.set({
         //     value: value,
         //     lineID:lineID
-        //   });   
-        //   console.log("add") 
-        // }
+        //   }); 
+      ref.orderByKey().equalTo(lineID).on("child_added", function (snapshot) {
+        if (!snapshot.exists()) {
+          console.log("There are no birthdays on or after ");
+        }
+        else {
+          snapshot.forEach(function(daySnapshot) {
+            console.log("There is a birthday on ");
+          });
+        }
+        var key = snapshot.key;
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
