@@ -63,33 +63,22 @@ function handleEvent(event) {
       var lineID =event.source.userId;
       var db = admin.database();
       var ref = db.ref(dataName+"/result/");
-      // var usersRef = ref.child(lineID);
-      // usersRef.set({
-      //   value: value,
-      //   lineID:lineID
-      // });
-
       ref.orderByKey().equalTo(lineID).on("child_added", function(snapshot) {
         var key = snapshot.key;
         if(key==lineID){
-          console.log("added");
-
+          var MessageReply = {
+            "type": "text",
+            "text": "คุณได้ทำการโหวตไปแล้ว"
+          }
+          client.pushMessage(event.source.userId, MessageReply);
         }else{
-          console.log("null");
-
+          var usersRef = ref.child(lineID);
+          usersRef.set({
+            value: value,
+            lineID:lineID
+          });    
         }
       });
-
-      // ref.orderByChild("test/lineID").equalTo("test").on("child_added", function(snapshot) {
-      //   console.log(snapshot.val());
-      // });
-
-      // ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("value", function(snapshot) {
-      //     var val = snapshot.val().lineID;
-      //     console.log("sanp:"+val);
-      // }, function (errorObject) {
-      //   console.log("The read failed: " + errorObject.code);
-      // });
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
@@ -115,7 +104,6 @@ function Intent(event){
     client.pushMessage(event.source.userId, msg.shortcut);
   } else if(userSay.includes("holiday>")){
     client.pushMessage(event.source.userId, day.holiday);
-    console.log(day.holiday)
 
   }
   else if(userSay.includes("today>")){
