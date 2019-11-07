@@ -66,11 +66,8 @@ function handleEvent(event) {
       ref.orderByKey().equalTo(lineID).on("child_added", function(snapshot) {
         var key = snapshot.key;
         if(key==lineID){
-          var MessageReply = {
-            "type": "text",
-            "text": "คุณได้ทำการโหวตไปแล้ว"
-          }
-          return client.pushMessage(event.source.userId, MessageReply);
+          console.log("added") 
+
         }else{
           var usersRef = ref.child(lineID);
           usersRef.set({
@@ -79,6 +76,8 @@ function handleEvent(event) {
           });   
           console.log("add") 
         }
+      }, function (errorObject) {
+        console.log("The read failed: ");
       });
       return replyText(event.replyToken, `Got postback: ${data}`);
 
