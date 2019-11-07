@@ -69,12 +69,16 @@ function handleEvent(event) {
       //   lineID:lineID
       // });
 
-      ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("value", function(snapshot) {
-          var val = snapshot.val().lineID;
-          console.log("sanp:"+val);
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+      ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("child_added", function(snapshot) {
+        console.log(snapshot.key);
       });
+
+      // ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("value", function(snapshot) {
+      //     var val = snapshot.val().lineID;
+      //     console.log("sanp:"+val);
+      // }, function (errorObject) {
+      //   console.log("The read failed: " + errorObject.code);
+      // });
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
