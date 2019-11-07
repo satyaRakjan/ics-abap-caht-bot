@@ -73,7 +73,11 @@ function handleEvent(event) {
           console.log("added")
         }else{
           console.log("null")
-
+            var usersRef = ref.child(lineID);
+                usersRef.set({
+                  value: value,
+                  lineID:lineID
+                });
         }
 
       }, function (errorObject) {
