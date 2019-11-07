@@ -69,8 +69,8 @@ function handleEvent(event) {
       //   lineID:lineID
       // });
 
-      ref.child(lineID).orderByChild("lineID").equalTo(lineID).on("child_added", function(snapshot) {
-        console.log(snapshot.key);
+      ref.child(lineID).on("child_added", function(snapshot) {
+        console.log(snapshot);
       });
 
       // ref.orderByChild(lineID+"/lineID").equalTo(lineID).on("value", function(snapshot) {
