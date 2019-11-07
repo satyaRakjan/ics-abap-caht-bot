@@ -68,7 +68,7 @@ function handleEvent(event) {
       //   value: value,
       //   lineID:lineID
       // });
-      ref.orderByChild("test").on("child_added", function(snapshot) {
+      ref.orderByChild(lineID).on("child_added", function(snapshot) {
         console.log(snapshot.key + " was " + snapshot.val().value + " meters tall");
       });
    
