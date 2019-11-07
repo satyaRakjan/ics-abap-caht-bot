@@ -69,7 +69,13 @@ function handleEvent(event) {
       //   lineID:lineID
       // });
       ref.orderByChild(lineID).on("child_added", function(snapshot) {
-        console.log(snapshot.key + " was " + snapshot.val().value + " meters tall");
+        if(lineID == snapshot.val().lineID){
+          console.log("added")
+        }else{
+          console.log("null")
+
+        }
+
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
