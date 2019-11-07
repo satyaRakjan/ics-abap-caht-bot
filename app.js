@@ -70,13 +70,14 @@ function handleEvent(event) {
             "type": "text",
             "text": "คุณได้ทำการโหวตไปแล้ว"
           }
-          client.pushMessage(event.source.userId, MessageReply);
+          return client.pushMessage(event.source.userId, MessageReply);
         }else{
           var usersRef = ref.child(lineID);
           usersRef.set({
             value: value,
             lineID:lineID
-          });    
+          });   
+          console.log("add") 
         }
       });
       return replyText(event.replyToken, `Got postback: ${data}`);
