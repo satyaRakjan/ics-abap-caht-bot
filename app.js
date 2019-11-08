@@ -65,7 +65,7 @@ function handleEvent(event) {
       var ref = db.ref(dataName+"/result/");
       ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
         var key = snapshot.key;
-        console.log(snapshot.val());
+        console.log(snapshot.val().lineID);
         // if(key==lineID){
         //   console.log("added") 
 
