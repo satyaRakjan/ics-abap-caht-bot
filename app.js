@@ -67,13 +67,13 @@ function handleEvent(event) {
         var key = snapshot.key;
         console.log(snapshot.val());
         if(snapshot.val()==null){
-          console.log("null") 
+           var usersRef = ref.child(lineID);
+               usersRef.set({
+                  value: value,
+                  lineID:lineID
+               });
         }else{
-          // var usersRef = ref.child(lineID);
-          // usersRef.set({
-          //   value: value,
-          //   lineID:lineID
-          // });   
+            
           console.log("not null") 
         }
       }, function (errorObject) {
