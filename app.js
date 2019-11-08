@@ -63,22 +63,22 @@ function handleEvent(event) {
       var lineID =event.source.userId;
       var db = admin.database();
       var ref = db.ref(dataName+"/result/");
-            //   var usersRef = ref.child(lineID);
+      ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
+        var key = snapshot.key;
+        console.log(snapshot.val());
+        // if(key==lineID){
+        //   console.log("added") 
+
+        // }else{
+        //   var usersRef = ref.child(lineID);
         //   usersRef.set({
         //     value: value,
         //     lineID:lineID
-        //   }); 
-
-      ref.orderByKey().equalTo(lineID).on("child_added", function (snapshot) {
-          if(snapshot.val() !== null){
-            console.log("test")
-          }else{
-            console.log("test")
-
-          }
-        var key = snapshot.key;
-      }, function (error) {
-        console.log("The read failed: " +error);
+        //   });   
+        //   console.log("add") 
+        // }
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
       });
 
 
