@@ -65,18 +65,17 @@ function handleEvent(event) {
       var ref = db.ref(dataName+"/result/");
       ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
         var key = snapshot.key;
-        console.log(snapshot.val().lineID);
-        // if(key==lineID){
-        //   console.log("added") 
-
-        // }else{
-        //   var usersRef = ref.child(lineID);
-        //   usersRef.set({
-        //     value: value,
-        //     lineID:lineID
-        //   });   
-        //   console.log("add") 
-        // }
+        console.log(snapshot.val());
+        if(snapshot.val()==null){
+          console.log("null") 
+        }else{
+          // var usersRef = ref.child(lineID);
+          // usersRef.set({
+          //   value: value,
+          //   lineID:lineID
+          // });   
+          console.log("not null") 
+        }
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
