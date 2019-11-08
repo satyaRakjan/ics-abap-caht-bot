@@ -64,7 +64,6 @@ function handleEvent(event) {
       var db = admin.database();
       var ref = db.ref(dataName+"/result/");
       ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
-        var key = snapshot.key;
         console.log(snapshot.val());
         if(snapshot.val()==null){
            var usersRef = ref.child(lineID);
@@ -73,14 +72,16 @@ function handleEvent(event) {
                   lineID:lineID
                });
         }else{
-            
-          console.log("not null") 
+          var MessageReply = {
+            "type": "text",
+            "text": "You have already voted."
+  
+          }
+          client.pushMessage(event.source.userId, MessageReply);
         }
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
-
-
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
