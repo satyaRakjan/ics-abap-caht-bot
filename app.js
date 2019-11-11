@@ -64,7 +64,6 @@ function handleEvent(event) {
       var db = admin.database();
       var ref = db.ref(dataName+"/result/");
       ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
-        console.log(snapshot.val());
         if(snapshot.val()==null){
            var usersRef = ref.child(lineID);
                usersRef.set({
@@ -75,7 +74,6 @@ function handleEvent(event) {
           var MessageReply = {
             "type": "text",
             "text": "You have already voted."
-  
           }
           client.pushMessage(event.source.userId, MessageReply);
         }
