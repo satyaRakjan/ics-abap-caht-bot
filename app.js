@@ -432,7 +432,7 @@ function beacon(event,dm){
     text:  event.beacon.type+"beacon hwid "+event.beacon.hwid+"with device message = "+dm
   };
   // client.pushMessage(event.source.userId, msg);
-  console.log( JSON.parse(event))
+  console.log(event)
 }
 
 const port = process.env.PORT || 3000;
