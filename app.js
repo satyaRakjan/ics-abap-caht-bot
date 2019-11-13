@@ -92,6 +92,13 @@ function handleEvent(event) {
 
 
 function Intent(event){
+  const userName = request("GET", "https://api.line.me/v2/bot/profile/"+event.source.userId, {
+    headers: {
+        "Authorization":"Bearer B+sgdP8ZDtJblIa3cW4CwVw1uG+wafCGbijMkMzWiO8/LP/UWA3bvbm9oTC4Nm/IDumT/FXNCo4tfwtxz/0UNKgCmcfjXuh1JqUPQEbeOJ03gnO2+Y8cGXx6FiDnAWQwHwv0GSr2XdRblTa5ZejpzQdB04t89/1O/w1cDnyilFU="
+    },
+  });
+  var userData = JSON.parse(userName.getBody());
+  console.log(userData)
   const msg = require('./message/messageText');
   const day = require('./message/holiday');
   var doc = nlp(event.message.text)
