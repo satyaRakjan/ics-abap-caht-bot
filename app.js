@@ -431,7 +431,7 @@ function beacon(event,dm){
     type: 'text',
     text:  event.beacon.type+"beacon hwid "+event.beacon.hwid+"with device message = "+dm
   };
-  // client.pushMessage(event.source.userId, msg);
+  client.pushMessage(event.source.userId, msg);
   console.log(event)
 }
 
