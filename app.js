@@ -10,12 +10,6 @@ const client = new line.Client(config);
 const sheetsu = require('sheetsu-node');
 const clientsheet = sheetsu({ address:'https://sheetsu.com/apis/v1.0bu/7e219e429147' })
 const admin = require("firebase-admin");
-const serviceAccount = require("./service/firebasekey.json");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://ics-vote.firebaseio.com"
-});
-
 app.use('/image', express.static('image/ICS-Logo.png'))
 app.post('/webhook', line.middleware(config), (req, res) => {
   Promise
@@ -92,6 +86,12 @@ function handleEvent(event) {
 
 
 function Intent(event){
+  var serviceAccount = require("./service/firebasekey.json");
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://ics-vote.firebaseio.com"
+  });
+
   const msg = require('./message/messageText');
   const day = require('./message/holiday');
   var doc = nlp(event.message.text)
