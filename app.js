@@ -146,6 +146,7 @@ function Intent(event){
   }else{
     clientsheet.read({ search: { Message: userSay} }).then(function(data) {
       var obj = JSON.parse(data)
+      console.log(obj[0]);
       if(obj[0].TypeMessage=='text'){
         var MessageReply = {
           "type": "text",
