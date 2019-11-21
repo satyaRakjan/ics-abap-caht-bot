@@ -159,8 +159,10 @@ function Intent(event){
         }else{
           ref.on("child_added", function(snapshot, prevChildKey) {
             var newPost = snapshot.val();
-            console.log("Author: " + newPost);
-            console.log("key"+snapshot.key)
+            var people =[]
+            people.push(snapshot.key)
+            console.log(people)
+
           });
         }
       }, function (errorObject) {
