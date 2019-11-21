@@ -147,7 +147,7 @@ function Intent(event){
     console.log("HPY")
       var db = admin.database();
       var ref = db.ref("HPY");
-      ref.orderByKey().equalTo("testsfd").on("value", function (snapshot) {
+      ref.orderByKey().equalTo(event.source.userId).on("value", function (snapshot) {
         if(snapshot.val()==null){
             console.log("null")
             var message={
@@ -157,8 +157,10 @@ function Intent(event){
             client.replyMessage(event.replyToken, message);
 
         }else{
-          console.log("not null")
-
+          ref.on("child_added", function(snapshot, prevChildKey) {
+            var newPost = snapshot.val();
+            console.log("Author: " + newPost);
+          });
         }
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
