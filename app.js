@@ -147,7 +147,7 @@ function Intent(event){
     console.log("HPY")
       var db = admin.database();
       var ref = db.ref("HPY");
-      ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
+      ref.orderByKey().equalTo(event.source.userId).on("value", function (snapshot) {
         if(snapshot.val()==null){
             console.log("null")
         }else{
