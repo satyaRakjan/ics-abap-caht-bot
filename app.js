@@ -143,7 +143,7 @@ function Intent(event){
   }else if(userSay.includes("train>")){
     var message = a[1];
     var reply = a[2];
-  }else if(userSay.includes("HPY")){
+  }else if(userSay.includes("hpy")){
     console.log("HPY")
   }
   // else{
