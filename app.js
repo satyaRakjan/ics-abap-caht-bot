@@ -169,9 +169,9 @@ function Intent(event){
           ref.orderByChild("match").equalTo(0).on("value", snapshot => {
             snapshot.forEach(childSnapshot => { 
               if(childSnapshot.key !=event.source.userId ){
-                console.log(childSnapshot.val().Fullname)
-                people.push(childSnapshot.key) 
+                people.push(childSnapshot) 
               }});
+              console.log(people)
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
              ref.child(event.source.userId).child("match").set(matchc[0])
                 //  return hpy(matchc,event)
