@@ -174,7 +174,7 @@ function Intent(event){
             console.log(people);
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
             console.log(matchc)
-              var usersRef = ref.child(lineID);
+              var usersRef = ref.child(event.source.userId);
                   usersRef.set({
                       match: matchc
                   })
