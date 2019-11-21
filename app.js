@@ -221,7 +221,7 @@ function Intent(event){
   // }
 }
 
-function hpy(event,matchc){
+function hpy(matchc){
   console.log(matchc)
 }
 
