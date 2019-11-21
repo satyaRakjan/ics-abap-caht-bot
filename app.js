@@ -163,9 +163,8 @@ function Intent(event){
           //   console.log(people);
           // });
           ref.orderByChild("match").equalTo(0).on("child_added", snapshot => {
-            snapshot.forEach(data => { people.push(data.key) });
+            snapshot.forEach(data => { people.push(data) });
             console.log(people);
-
           });
           // ref.on("child_added", function(snapshot, prevChildKey) {
           //   var newPost = snapshot.val();
