@@ -162,11 +162,14 @@ function Intent(event){
           //   snapshot.forEach(data => { people.push(data.key) });
           //   console.log(people);
           // });
-          ref.orderByChild("match").equalTo(0).on("child_added", snapshot => {
-            people.push(snapshot.key) 
-            return people
+          // ref.orderByChild("match").equalTo(0).on("child_added", snapshot => {
+          //   people.push(snapshot.key) 
+          //   console.log(people);
+          // });
+
+          ref.orderByChild("match").equalTo(0).on("child_added").then(function (snapshot) {
+             console.log(snapshot.key);
           });
-          console.log(people);
 
           // ref.on("child_added", function(snapshot, prevChildKey) {
           //   var newPost = snapshot.val();
