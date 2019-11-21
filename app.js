@@ -158,32 +158,17 @@ function Intent(event){
 
         }else{
           var people =[]
-          // ref.on('child_added', snapshot => {
-          //   snapshot.forEach(data => { people.push(data.key) });
-          //   console.log(people);
-          // });
-          // ref.orderByChild("match").equalTo(0).on("child_added", snapshot => {
-          //   people.push(snapshot.key) 
-          //   console.log(people);
-          // });
+
           ref.orderByChild("match").equalTo(0).on("value", snapshot => {
             snapshot.forEach(childSnapshot => { 
-              if(childSnapshot.key !=event.source.userId ){
+              if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
                 people.push(childSnapshot.key) 
               }});
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
              ref.child(event.source.userId).child("match").set(matchc[0])
-                //  return hpy(matchc,event)
           });
     
-          // ref.on("child_added", function(snapshot, prevChildKey) {
-          //   var newPost = snapshot.val();
-          //   if(snapshot.val().match==0){
-          //     people.push(snapshot.key)
-          //   }
-          //   // return hpy(people,event)
-          // });
-
+ 
         }
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
@@ -221,11 +206,6 @@ function Intent(event){
   // }
 }
 
-function hpy(matchc,event){
-  console.log(matchc)
-  console.log(event.source.userId)
-
-}
 
 
 function broadcast(event){
