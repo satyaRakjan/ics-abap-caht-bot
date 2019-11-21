@@ -173,7 +173,7 @@ function Intent(event){
               }});
             console.log(people);
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-            //  ref.child(event.source.userId).child("match").update(matchc)
+             ref.child(event.source.userId).child("match").set(matchc)
          
           });
     
