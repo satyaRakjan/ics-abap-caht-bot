@@ -172,8 +172,8 @@ function Intent(event){
                 people.push( childSnapshot.key) 
               }});
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-            //  ref.child(event.source.userId).child("match").set(matchc)
-                 return hpy(matchc,event)
+             ref.child(event.source.userId).child("match").set("matchc")
+                //  return hpy(matchc,event)
           });
     
           // ref.on("child_added", function(snapshot, prevChildKey) {
