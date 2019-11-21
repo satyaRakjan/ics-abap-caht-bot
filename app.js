@@ -169,6 +169,8 @@ function Intent(event){
           ref.orderByChild("match").equalTo(0).on("value", snapshot => {
             snapshot.forEach(childSnapshot => { people.push( childSnapshot.key) });
             console.log(people);
+            var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
+            console.log(matchc)
           });
    
           // ref.on("child_added", function(snapshot, prevChildKey) {
