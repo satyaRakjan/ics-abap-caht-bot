@@ -166,7 +166,7 @@ function Intent(event){
           //   people.push(snapshot.key) 
           //   console.log(people);
           // });
-          ref.orderByChild("match").equalTo(0).on("value", snapshot => {
+          ref.orderByChild("match").equalTo("null").on("value", snapshot => {
             snapshot.forEach(childSnapshot => { 
               if(childSnapshot.key !=event.source.userId ){
                 people.push( childSnapshot.key) 
@@ -175,7 +175,7 @@ function Intent(event){
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
             //  ref.child(event.source.userId).child("match").update(matchc)
              var hopperRef = ref.child(event.source.userId);
-             hopperRef.update({
+             hopperRef.set({
               "match": matchc
             });
           });
