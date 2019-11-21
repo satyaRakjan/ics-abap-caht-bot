@@ -163,9 +163,8 @@ function Intent(event){
             if(snapshot.val().match==0){
               people.push(snapshot.key)
             }
-
+            hpy(people,event);
           });
-          console.log(people)
 
         }
       }, function (errorObject) {
@@ -202,6 +201,10 @@ function Intent(event){
   //     console.log(err);
   //   });
   // }
+}
+
+function hpy(event,people){
+  console.log(people)
 }
 
 function broadcast(event){
