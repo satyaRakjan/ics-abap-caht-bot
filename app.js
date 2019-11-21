@@ -172,11 +172,10 @@ function Intent(event){
                 people.push( childSnapshot.key) 
               }});
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-            var usersRef = ref.child("HPY");
-            var hopperRef = usersRef.child(event.source.userId);
-            hopperRef.update({
-              "match": matchc
-            });
+             ref.orderByChild("uid").equalTo(event.source.userId);
+             query.once("child_added", function(snapshot) {
+               snapshot.ref.update({ match: matchc })
+             });
           });
     
           // ref.on("child_added", function(snapshot, prevChildKey) {
