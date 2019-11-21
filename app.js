@@ -166,14 +166,14 @@ function Intent(event){
           //   people.push(snapshot.key) 
           //   console.log(people);
           // });
-          ref.orderByChild("match").equalTo("null").on("value", snapshot => {
+          ref.orderByChild("match").equalTo(0).on("value", snapshot => {
             snapshot.forEach(childSnapshot => { 
               if(childSnapshot.key !=event.source.userId ){
-                people.push(childSnapshot.key) 
+                people.push( childSnapshot.key) 
               }});
             console.log(people);
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-             ref.child(event.source.userId).child("match").update(matchc)
+            //  ref.child(event.source.userId).child("match").update(matchc)
          
           });
     
