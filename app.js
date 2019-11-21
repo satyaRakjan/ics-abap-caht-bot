@@ -166,11 +166,11 @@ function Intent(event){
           //   people.push(snapshot.key) 
           //   console.log(people);
           // });
-
-          ref.orderByChild("match").equalTo(0).on("child_added").then(function (snapshot) {
-             console.log(snapshot.key);
+          ref.orderByChild("match").equalTo(0).on("value", snapshot => {
+            snapshot.forEach(childSnapshot => { people.push( childSnapshot.key) });
+            console.log(people);
           });
-
+   
           // ref.on("child_added", function(snapshot, prevChildKey) {
           //   var newPost = snapshot.val();
           //   if(snapshot.val().match==0){
