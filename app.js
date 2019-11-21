@@ -10,10 +10,10 @@ const client = new line.Client(config);
 const sheetsu = require('sheetsu-node');
 const clientsheet = sheetsu({ address:'https://sheetsu.com/apis/v1.0bu/7e219e429147' })
 const admin = require("firebase-admin");
-const serviceAccount = require("./service/firebasekey.json");
+const serviceAccount = require("./service/matchFirebase.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://ics-vote.firebaseio.com"
+  databaseURL: "https://match-699cf.firebaseio.com"
 });
 
 app.use('/image', express.static('image/ICS-Logo.png'))
@@ -56,31 +56,31 @@ function handleEvent(event) {
       return console.log(`Left: ${JSON.stringify(event)}`);
 
     case 'postback':
-      var doc = nlp(event.postback.data)
-      var a =doc.terms().out('array')
-      var dataName = a[0];
-      var value = a[1];
-      var lineID =event.source.userId;
-      var db = admin.database();
-      var ref = db.ref(dataName+"/result/");
-      ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
-        if(snapshot.val()==null){
-           var usersRef = ref.child(lineID);
-               usersRef.set({
-                  value: value,
-                  lineID:lineID
-               });
-        }else{
-          var MessageReply = {
-            "type": "text",
-            "text": "You have already voted."
-          }
-          client.pushMessage(event.source.userId, MessageReply);
-        }
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      });
-      return replyText(event.replyToken, `Got postback: ${data}`);
+      // var doc = nlp(event.postback.data)
+      // var a =doc.terms().out('array')
+      // var dataName = a[0];
+      // var value = a[1];
+      // var lineID =event.source.userId;
+      // var db = admin.database();
+      // var ref = db.ref(dataName+"/result/");
+      // ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
+      //   if(snapshot.val()==null){
+      //      var usersRef = ref.child(lineID);
+      //          usersRef.set({
+      //             value: value,
+      //             lineID:lineID
+      //          });
+      //   }else{
+      //     var MessageReply = {
+      //       "type": "text",
+      //       "text": "You have already voted."
+      //     }
+      //     client.pushMessage(event.source.userId, MessageReply);
+      //   }
+      // }, function (errorObject) {
+      //   console.log("The read failed: " + errorObject.code);
+      // });
+      // return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
       const dm = `${Buffer.from(event.beacon.dm || '', 'hex').toString('utf8')}`;
@@ -143,7 +143,21 @@ function Intent(event){
   }else if(userSay.includes("train>")){
     var message = a[1];
     var reply = a[2];
-  }else{
+  }else if(userSay.includes("HPY")){
+    var db = admin.database();
+      var ref = db.ref("HPY");
+      ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
+        if(snapshot.val()==null){
+            console.log("null")
+        }else{
+          console.log("not null")
+        }
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+
+  }
+  else{
     clientsheet.read({ search: { Message: userSay} }).then(function(data) {
       var obj = JSON.parse(data)
       console.log(obj);
