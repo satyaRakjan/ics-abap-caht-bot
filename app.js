@@ -144,7 +144,8 @@ function Intent(event){
     var message = a[1];
     var reply = a[2];
   }else if(userSay.includes("HPY")){
-    var db = admin.database();
+    console.log("HPY")
+      var db = admin.database();
       var ref = db.ref("HPY");
       ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
         if(snapshot.val()==null){
@@ -152,8 +153,6 @@ function Intent(event){
         }else{
           console.log("not null")
         }
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
       });
 
   }
