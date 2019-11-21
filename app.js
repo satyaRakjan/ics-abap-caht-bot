@@ -163,9 +163,9 @@ function Intent(event){
             if(snapshot.val().match==0){
               people.push(snapshot.key)
             }
-            console.log(people)
 
           });
+          console.log(people)
 
         }
       }, function (errorObject) {
