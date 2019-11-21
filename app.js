@@ -171,11 +171,9 @@ function Intent(event){
               if(childSnapshot.key !=event.source.userId ){
                 people.push( childSnapshot.key) 
               }});
+            console.log(people);
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-             ref.orderByChild("uid").equalTo(event.source.userId);
-             query.once("child_added", function(snapshot) {
-               snapshot.ref.update({ match: matchc })
-             });
+             ref.child(event.source.userId).child("match").update(matchc)
           });
     
           // ref.on("child_added", function(snapshot, prevChildKey) {
