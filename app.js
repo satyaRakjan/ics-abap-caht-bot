@@ -147,6 +147,7 @@ function Intent(event){
     console.log("HPY")
       var db = admin.database();
       var ref = db.ref("HPY");
+      var people =[]
       ref.orderByKey().equalTo(event.source.userId).on("value", function (snapshot) {
         if(snapshot.val()==null){
             console.log("null")
@@ -159,11 +160,10 @@ function Intent(event){
         }else{
           ref.on("child_added", function(snapshot, prevChildKey) {
             var newPost = snapshot.val();
-            var people =[]
             people.push(snapshot.key)
-            console.log(people)
-
           });
+          console.log(people)
+
         }
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
