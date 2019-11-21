@@ -164,8 +164,9 @@ function Intent(event){
               if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
                 people.push(childSnapshot.key) 
               }});
+              console.log(people)
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-             ref.child(event.source.userId).child("match").set(matchc[0])
+            //  ref.child(event.source.userId).child("match").set(matchc[0])
           });
     
  
