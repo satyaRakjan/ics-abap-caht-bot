@@ -171,10 +171,9 @@ function Intent(event){
               if(childSnapshot.key !=event.source.userId ){
                 people.push( childSnapshot.key) 
               }});
-            console.log(people);
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
             //  ref.child(event.source.userId).child("match").set(matchc)
-                hpy(matchc,event)
+                 return hpy(matchc,event)
           });
     
           // ref.on("child_added", function(snapshot, prevChildKey) {
