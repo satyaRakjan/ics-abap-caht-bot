@@ -10,10 +10,10 @@ const client = new line.Client(config);
 const sheetsu = require('sheetsu-node');
 const clientsheet = sheetsu({ address:'https://sheetsu.com/apis/v1.0bu/7e219e429147' })
 const admin = require("firebase-admin");
-const serviceAccount = require("./service/firebasekey.json");
+const serviceAccount = require("./service/matchFirebase.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://ics-vote.firebaseio.com"
+  databaseURL: "https://match-699cf.firebaseio.com"
 });
 
 app.use('/image', express.static('image/ICS-Logo.png'))
@@ -145,6 +145,18 @@ function Intent(event){
     var reply = a[2];
   }else if(userSay.includes("hpy")){
     console.log("HPY")
+      var db = admin.database();
+      var ref = db.ref("HPY");
+      ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
+        if(snapshot.val()==null){
+            console.log("null")
+        }else{
+          console.log("not null")
+
+        }
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
   }
   // else{
   //   clientsheet.read({ search: { Message: userSay} }).then(function(data) {
