@@ -158,11 +158,12 @@ function Intent(event){
 
         }else{
           var people =[]
-          ref.on("child_added", function(snapshot, prevChildKey) {
+          ref.orderByChild("match").on("child_added", function(snapshot, prevChildKey) {
             var newPost = snapshot.val();
-            people.push(snapshot.key)
-            console.log(people)
-            
+            // people.push(snapshot.key)
+            console.log(newPost)
+            console.log(snapshot.key)
+
           });
 
         }
