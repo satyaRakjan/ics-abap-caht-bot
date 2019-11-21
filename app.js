@@ -172,6 +172,7 @@ function Intent(event){
                 people.push( childSnapshot.key) 
               }});
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
+            console.log(matchc[0])
              ref.child(event.source.userId).child("match").set("matchc")
                 //  return hpy(matchc,event)
           });
