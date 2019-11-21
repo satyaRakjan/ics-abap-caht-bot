@@ -163,9 +163,10 @@ function Intent(event){
           //   console.log(people);
           // });
           ref.orderByChild("match").equalTo(0).on("child_added", snapshot => {
-            snapshot.forEach(data => { people.push(data) });
-            console.log(people);
+            people.push(snapshot.key) 
           });
+          console.log(people);
+
           // ref.on("child_added", function(snapshot, prevChildKey) {
           //   var newPost = snapshot.val();
           //   if(snapshot.val().match==0){
