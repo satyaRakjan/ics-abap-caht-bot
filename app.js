@@ -10,10 +10,10 @@ const client = new line.Client(config);
 const sheetsu = require('sheetsu-node');
 const clientsheet = sheetsu({ address:'https://sheetsu.com/apis/v1.0bu/7e219e429147' })
 const admin = require("firebase-admin");
-const serviceAccount = require("./service/matchFirebase.json");
+const serviceAccount = require("./service/firebasekey.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://match-699cf.firebaseio.com"
+  databaseURL: "https://ics-vote.firebaseio.com"
 });
 
 app.use('/image', express.static('image/ICS-Logo.png'))
@@ -80,7 +80,7 @@ function handleEvent(event) {
       // }, function (errorObject) {
       //   console.log("The read failed: " + errorObject.code);
       // });
-      // return replyText(event.replyToken, `Got postback: ${data}`);
+      return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
       const dm = `${Buffer.from(event.beacon.dm || '', 'hex').toString('utf8')}`;
@@ -145,47 +145,37 @@ function Intent(event){
     var reply = a[2];
   }else if(userSay.includes("HPY")){
     console.log("HPY")
-      var db = admin.database();
-      var ref = db.ref("HPY");
-      ref.orderByKey().equalTo(lineID).on("value", function (snapshot) {
-        if(snapshot.val()==null){
-            console.log("null")
-        }else{
-          console.log("not null")
-        }
-      });
-
   }
-  else{
-    // clientsheet.read({ search: { Message: userSay} }).then(function(data) {
-    //   var obj = JSON.parse(data)
-    //   console.log(obj);
-    //   if(obj[0].TypeMessage=='text'){
-    //     var MessageReply = {
-    //       "type": "text",
-    //       "text": obj[0].MessageReply
+  // else{
+  //   clientsheet.read({ search: { Message: userSay} }).then(function(data) {
+  //     var obj = JSON.parse(data)
+  //     console.log(obj);
+  //     if(obj[0].TypeMessage=='text'){
+  //       var MessageReply = {
+  //         "type": "text",
+  //         "text": obj[0].MessageReply
 
-    //     }
-    //     client.pushMessage(event.source.userId, MessageReply);
-    //   }else if(obj[0].TypeMessage=='flex'){
-    //     var MessageReply =  JSON.parse(obj[0].MessageReply)
-    //      client.pushMessage(event.source.userId, MessageReply);
-    //   }else if(obj[0].TypeMessage=='vote'){
-    //     var MessageReply =  JSON.parse(obj[0].MessageReply)
-    //     client.pushMessage(event.source.userId, MessageReply);
-    //   }
+  //       }
+  //       client.pushMessage(event.source.userId, MessageReply);
+  //     }else if(obj[0].TypeMessage=='flex'){
+  //       var MessageReply =  JSON.parse(obj[0].MessageReply)
+  //        client.pushMessage(event.source.userId, MessageReply);
+  //     }else if(obj[0].TypeMessage=='vote'){
+  //       var MessageReply =  JSON.parse(obj[0].MessageReply)
+  //       client.pushMessage(event.source.userId, MessageReply);
+  //     }
 
    
-    // }, function(err){
-    //   var MessageReply = {
-    //     "type": "text",
-    //     "text":"กรุณาลองใหม่อีกครั้ง"
+  //   }, function(err){
+  //     var MessageReply = {
+  //       "type": "text",
+  //       "text":"กรุณาลองใหม่อีกครั้ง"
 
-    //   }
-    //   client.pushMessage(event.source.userId, MessageReply);
-    //   console.log(err);
-    // });
-  }
+  //     }
+  //     client.pushMessage(event.source.userId, MessageReply);
+  //     console.log(err);
+  //   });
+  // }
 }
 
 function broadcast(event){
