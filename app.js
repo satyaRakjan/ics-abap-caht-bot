@@ -163,8 +163,7 @@ function Intent(event){
             if(snapshot.val().match==0){
               people.push(snapshot.key)
             }
-            console.log(people)
-
+            return hpy(people,event)
           });
 
         }
@@ -204,6 +203,9 @@ function Intent(event){
   // }
 }
 
+function hpy(event,people){
+  console.log(people)
+}
 
 
 function broadcast(event){
