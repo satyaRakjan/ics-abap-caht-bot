@@ -147,9 +147,15 @@ function Intent(event){
     console.log("HPY")
       var db = admin.database();
       var ref = db.ref("HPY");
-      ref.orderByKey().equalTo(event.source.userId).on("value", function (snapshot) {
+      ref.orderByKey().equalTo("testsfd").on("value", function (snapshot) {
         if(snapshot.val()==null){
             console.log("null")
+            var message={
+              type: 'text',
+              text: "Please register first."
+            };
+            client.replyMessage(event.replyToken, message);
+
         }else{
           console.log("not null")
 
