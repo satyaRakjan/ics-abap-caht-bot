@@ -161,8 +161,7 @@ function Intent(event){
           ref.on("child_added", function(snapshot, prevChildKey) {
             var newPost = snapshot.val();
             if(snapshot.val().match==0){
-              console.log(snapshot.key)
-                people.push(snapshot.key)
+              people.push(snapshot.key)
             }
             console.log(people)
 
