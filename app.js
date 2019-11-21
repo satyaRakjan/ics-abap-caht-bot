@@ -172,8 +172,8 @@ function Intent(event){
                 people.push( childSnapshot.key) 
               }});
             console.log(people);
-            // var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-            // console.log(matchc)
+            var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
+            console.log(matchc)
          
           });
    
