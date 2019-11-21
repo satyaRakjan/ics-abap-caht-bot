@@ -162,9 +162,9 @@ function Intent(event){
             var newPost = snapshot.val();
             if(snapshot.val().match==0){
               console.log(snapshot.key)
+                people.push(snapshot.key)
             }
-            // people.push(snapshot.key)
-            // console.log(newPost)
+            console.log(people)
 
           });
 
