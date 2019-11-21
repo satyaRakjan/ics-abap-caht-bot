@@ -158,13 +158,17 @@ function Intent(event){
 
         }else{
           var people =[]
-          ref.on("child_added", function(snapshot, prevChildKey) {
-            var newPost = snapshot.val();
-            if(snapshot.val().match==0){
-              people.push(snapshot.key)
-            }
-            return hpy(people,event)
+          ref.once('child_added', snap => {
+            snap.forEach(data => { people.push(data.key) });
+            console.log(people);
           });
+          // ref.on("child_added", function(snapshot, prevChildKey) {
+          //   var newPost = snapshot.val();
+          //   if(snapshot.val().match==0){
+          //     people.push(snapshot.key)
+          //   }
+          //   // return hpy(people,event)
+          // });
 
         }
       }, function (errorObject) {
