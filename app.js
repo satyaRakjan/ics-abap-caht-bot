@@ -164,7 +164,7 @@ function Intent(event){
               console.log(snapshot.key)
             }
             // people.push(snapshot.key)
-            console.log(newPost)
+            // console.log(newPost)
 
           });
 
