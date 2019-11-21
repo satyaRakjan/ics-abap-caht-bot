@@ -173,8 +173,8 @@ function Intent(event){
               }});
             console.log(people);
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-             ref.child(event.source.userId).child("match").set(matchc)
-         
+            //  ref.child(event.source.userId).child("match").set(matchc)
+                hpy(matchc,event)
           });
     
           // ref.on("child_added", function(snapshot, prevChildKey) {
@@ -222,8 +222,8 @@ function Intent(event){
   // }
 }
 
-function hpy(event,people){
-  console.log(people)
+function hpy(event,matchc){
+  console.log(matchc)
 }
 
 
