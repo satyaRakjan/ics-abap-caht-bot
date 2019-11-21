@@ -158,34 +158,34 @@ function Intent(event){
 
   }
   else{
-    clientsheet.read({ search: { Message: userSay} }).then(function(data) {
-      var obj = JSON.parse(data)
-      console.log(obj);
-      if(obj[0].TypeMessage=='text'){
-        var MessageReply = {
-          "type": "text",
-          "text": obj[0].MessageReply
+    // clientsheet.read({ search: { Message: userSay} }).then(function(data) {
+    //   var obj = JSON.parse(data)
+    //   console.log(obj);
+    //   if(obj[0].TypeMessage=='text'){
+    //     var MessageReply = {
+    //       "type": "text",
+    //       "text": obj[0].MessageReply
 
-        }
-        client.pushMessage(event.source.userId, MessageReply);
-      }else if(obj[0].TypeMessage=='flex'){
-        var MessageReply =  JSON.parse(obj[0].MessageReply)
-         client.pushMessage(event.source.userId, MessageReply);
-      }else if(obj[0].TypeMessage=='vote'){
-        var MessageReply =  JSON.parse(obj[0].MessageReply)
-        client.pushMessage(event.source.userId, MessageReply);
-      }
+    //     }
+    //     client.pushMessage(event.source.userId, MessageReply);
+    //   }else if(obj[0].TypeMessage=='flex'){
+    //     var MessageReply =  JSON.parse(obj[0].MessageReply)
+    //      client.pushMessage(event.source.userId, MessageReply);
+    //   }else if(obj[0].TypeMessage=='vote'){
+    //     var MessageReply =  JSON.parse(obj[0].MessageReply)
+    //     client.pushMessage(event.source.userId, MessageReply);
+    //   }
 
    
-    }, function(err){
-      var MessageReply = {
-        "type": "text",
-        "text":"กรุณาลองใหม่อีกครั้ง"
+    // }, function(err){
+    //   var MessageReply = {
+    //     "type": "text",
+    //     "text":"กรุณาลองใหม่อีกครั้ง"
 
-      }
-      client.pushMessage(event.source.userId, MessageReply);
-      console.log(err);
-    });
+    //   }
+    //   client.pushMessage(event.source.userId, MessageReply);
+    //   console.log(err);
+    // });
   }
 }
 
