@@ -174,10 +174,9 @@ function Intent(event){
             console.log(people);
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
             console.log(matchc)
-            //  ref.child(event.source.userId).update({ match: matchc });
-                  // usersRef.update({
-                  //     match: matchc
-                  // })
+             ref.child(event.source.userId).update({
+                "match": matchc
+              });
           });
    
           // ref.on("child_added", function(snapshot, prevChildKey) {
