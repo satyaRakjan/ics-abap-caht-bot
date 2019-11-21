@@ -157,7 +157,7 @@ function Intent(event){
             client.replyMessage(event.replyToken, message);
 
         }else{
-          ref.on("child_added", function(snapshot, prevChildKey) {
+          ref.on("value", function(snapshot, prevChildKey) {
             var newPost = snapshot.val();
             console.log("Author: " + newPost);
           });
