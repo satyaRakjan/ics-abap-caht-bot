@@ -161,10 +161,9 @@ function Intent(event){
           ref.on("child_added", function(snapshot, prevChildKey) {
             var newPost = snapshot.val();
             people.push(snapshot.key)
+            console.log(people)
             
           });
-          console.log(people)
-
 
         }
       }, function (errorObject) {
