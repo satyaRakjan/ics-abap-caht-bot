@@ -168,11 +168,10 @@ function Intent(event){
               var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
               var gift =matchc[0];
               ref.orderByKey().equalTo(gift).on("value", snapshot => {
-                ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
                 snapshot.forEach(childSnapshot => {
                   if(childSnapshot.key == gift){
                     giftTest.push(childSnapshot.key) 
-                    // ref.child(event.source.userId).child("match").set(childSnapshot.val().Fullname)
+                    ref.child(event.source.userId).child("match").set(childSnapshot.val().Fullname)
                     HPY(giftTest,event);
                   }
                 })
