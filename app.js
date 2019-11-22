@@ -172,7 +172,8 @@ function Intent(event){
                   if(childSnapshot.key == gift){
                     giftTest.push(childSnapshot.key) 
                     ref.child(event.source.userId).child("match").set(childSnapshot.val().Fullname)
-                    HPY(giftTest);
+                    console.log(giftTest[0])
+                    // HPY(giftTest);
                   }
                 })
               });
