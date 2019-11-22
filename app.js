@@ -219,8 +219,6 @@ function Intent(event){
 function HPY(gift,event){
   var db = admin.database();
   var ref = db.ref("HPY");
-  console.log(gift)   
-  updateFirebase(gift,event)
      ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
         ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
       });
@@ -229,7 +227,7 @@ function HPY(gift,event){
 function updateFirebase(gift,event){
   var db = admin.database();
   var ref = db.ref("HPY");
-  console.log(gift)   
+  // console.log(gift)   
 
       // ref.child(gift).child("gift").set(event.source.userId)
 }
