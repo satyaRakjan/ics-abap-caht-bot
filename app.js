@@ -158,8 +158,15 @@ function Intent(event){
 
         }else{
           snapshot.forEach(childSnapshot => { 
-            console.log(childSnapshot.val().Fullname)
-
+            var fullname =childSnapshot.val().Fullname;
+            var people =[];
+            ref.orderByChild("match").equalTo(0).on("value", snapshot => {
+            snapshot.forEach(childSnapshot => { 
+              if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
+                people.push(childSnapshot.key) 
+              }});
+              console.log(people)
+            })
           })
         }
         
