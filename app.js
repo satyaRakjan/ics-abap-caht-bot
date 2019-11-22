@@ -166,7 +166,6 @@ function Intent(event){
               }});
               var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
               var gift =matchc[0];
-              console.log(gift)
               HPY(gift,event)
             // ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
             //     console.log(snapshot.val().Fullname)
@@ -223,7 +222,14 @@ function HPY(gift,event){
      ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
         console.log(gift)   
         console.log(snapshot.val().Fullname)
+        updateFirebase(gift,snapshot,event)
       });
+}
+function updateFirebase(gift,snapshot,event){
+  var db = admin.database();
+  var ref = db.ref("HPY");
+      ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+      ref.child(gift).child("gift").set(event.source.userId)
 }
 
 function broadcast(event){
