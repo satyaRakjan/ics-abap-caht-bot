@@ -160,7 +160,7 @@ function Intent(event){
           var fullname = snapshot.val().Fullname
           var people =[]
           var giftTest = []
-          console.log(fullname)
+          console.log(snapshot.val())
           // ref.orderByChild("match").equalTo(0).on("value", snapshot => {
           //   snapshot.forEach(childSnapshot => { 
           //     if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
