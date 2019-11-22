@@ -171,7 +171,8 @@ function Intent(event){
                 snapshot.forEach(childSnapshot => {
                   if(childSnapshot.key == gift){
                     giftTest.push(childSnapshot.key) 
-                    HPY(giftTest);
+                    ref.child(event.source.userId).child("match").set(childSnapshot.val().Fullname)
+                    HPY(giftTest,event);
                   }
                 })
               });
@@ -240,17 +241,11 @@ function HPY(giftTest,event){
   var db = admin.database();
   var ref = db.ref("HPY");
   console.log(giftTest)
-  ref.child(giftTest[0]).child("gift").set("1")
+  ref.child(giftTest[0]).child("gift").set(event.source.userId)
  
 
 }
-function updateFirebase(gift,event){
-  var db = admin.database();
-  var ref = db.ref("HPY");
-  // console.log(gift)   
 
-      // ref.child(gift).child("gift").set(event.source.userId)
-}
 
 function broadcast(event){
   if(event.message.type == 'image'){
