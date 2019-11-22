@@ -220,16 +220,16 @@ function HPY(gift,event){
   var db = admin.database();
   var ref = db.ref("HPY");
      ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
-        console.log(gift)   
-        console.log(snapshot.val().Fullname)
-        updateFirebase(gift,snapshot,event)
+        ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+        updateFirebase(gift,event)
       });
 }
-function updateFirebase(gift,snapshot,event){
+function updateFirebase(gift,event){
   var db = admin.database();
   var ref = db.ref("HPY");
-      ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
-      ref.child(gift).child("gift").set(event.source.userId)
+  console.log(gift)   
+
+      // ref.child(gift).child("gift").set(event.source.userId)
 }
 
 function broadcast(event){
