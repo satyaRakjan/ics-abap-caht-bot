@@ -157,48 +157,32 @@ function Intent(event){
             client.replyMessage(event.replyToken, message);
 
         }else{
+          var fullname = snapshot.val().Fullname
           var people =[]
           var giftTest = []
-          ref.orderByChild("match").equalTo(0).on("value", snapshot => {
-            snapshot.forEach(childSnapshot => { 
-              if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
-                people.push(childSnapshot.key) 
+          console.log(fullname)
+          // ref.orderByChild("match").equalTo(0).on("value", snapshot => {
+          //   snapshot.forEach(childSnapshot => { 
+          //     if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
+          //       people.push(childSnapshot.key) 
            
-              }});
-              var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-              var gift =matchc[0];
-              ref.orderByKey().equalTo(gift).on("value", snapshot => {
-                snapshot.forEach(childSnapshot => {
-                  if(childSnapshot.key == gift){
-                    giftTest.push(childSnapshot.key) 
-                    ref.child(event.source.userId).child("match").set(childSnapshot.val().Fullname)
-                    console.log(giftTest[0])
-                    // HPY(giftTest);
-                  }
-                })
-              });
-              // ref.orderByChild(gift).on("value", function (snapshot) {
-              //   // ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
-              //   console.log(gift)
-              //   console.log(snapshot.val())
+          //     }});
+          //     var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
+          //     var gift =matchc[0];
+          //     ref.orderByKey().equalTo(gift).on("value", snapshot => {
+          //       snapshot.forEach(childSnapshot => {
+          //         if(childSnapshot.key == gift){
+          //           giftTest.push(childSnapshot.key) 
+          //           ref.child(event.source.userId).child("match").set(childSnapshot.val().Fullname)
+          //           console.log(giftTest[0])
+          //         }
+          //       })
+          //     });
 
-              // });
-              // HPY(gift,event)
-              // ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
-              //   ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
-              // });
-        
-              // HPY(gift,event)
-            // ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
-            //     console.log(snapshot.val().Fullname)
-           
-            //   });
-                //  ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
-            //  console.log(gift)
+          //       //  ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+          //   //  ref.child(gift).child("gift").set(event.source.userId)
 
-            //  ref.child(gift).child("gift").set(event.source.userId)
-
-          });
+          // });
     
  
         }
