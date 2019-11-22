@@ -147,7 +147,7 @@ function Intent(event){
     console.log("HPY")
       var db = admin.database();
       var ref = db.ref("HPY");
-      ref.orderByChild().equalTo(event.source.userId).on("value", function (snapshot) {
+      ref.orderByChild(event.source.userId).on("value", function (snapshot) {
         if(snapshot.val()==null){
             console.log("null")
             var message={
