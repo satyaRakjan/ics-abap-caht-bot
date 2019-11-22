@@ -163,12 +163,11 @@ function Intent(event){
             snapshot.forEach(childSnapshot => { 
               if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
                 people.push(childSnapshot.key) 
-
-              
               }});
               var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
               var gift =matchc[0];
               console.log(gift)
+              HPY(gift,event)
             // ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
             //     console.log(snapshot.val().Fullname)
            
@@ -218,7 +217,14 @@ function Intent(event){
   // }
 }
 
-
+function HPY(gift,event){
+  var db = admin.database();
+  var ref = db.ref("HPY");
+     ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
+        console.log(snapshot.val().Fullname)
+        console.log(gift)   
+      });
+}
 
 function broadcast(event){
   if(event.message.type == 'image'){
