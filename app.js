@@ -168,7 +168,7 @@ function Intent(event){
               console.log(people)
               var match = people.splice(Math.floor(Math.random()*people.length), 1);
               if(match.length=1){
-                ref.orderByKey(match[0]).equalTo(match[0]).once("value",  snapshot => {
+                ref.orderByKey().equalTo(match[0]).once("value",  snapshot => {
                   snapshot.forEach(childSnapshot => {
                     console.log(childSnapshot.val().Fullname);
                   })
