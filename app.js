@@ -168,12 +168,17 @@ function Intent(event){
               var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
               var gift =matchc[0];
               console.log(matchc)
-              ref.orderByChild(gift).on("value", function (snapshot) {
-                // ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
-                console.log(gift)
-                console.log(snapshot.val())
-
+              ref.orderByKey().equalTo(gift).on("value", snapshot => {
+                snapshot.forEach(childSnapshot => {
+                  console.log(childSnapshot.val().Fullname)
+                })
               });
+              // ref.orderByChild(gift).on("value", function (snapshot) {
+              //   // ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+              //   console.log(gift)
+              //   console.log(snapshot.val())
+
+              // });
               // HPY(gift,event)
               // ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
               //   ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
