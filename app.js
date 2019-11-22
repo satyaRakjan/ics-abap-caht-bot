@@ -166,6 +166,9 @@ function Intent(event){
               }});
               console.log(people)
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
+            ref.orderByKey().equalTo(matchc).on("value", function (snapshot) {
+                console.log(snapshot.val().Fullname)
+            });
             //  ref.child(event.source.userId).child("match").set(matchc[0])
           });
     
