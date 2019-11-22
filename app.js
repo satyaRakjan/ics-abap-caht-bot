@@ -226,7 +226,7 @@ function Intent(event){
 function HPY(gift,event){
   var db = admin.database();
   var ref = db.ref("HPY");
-     ref.orderByKey().equalTo(gift).once("child_added", function (snapshot) {
+     ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
         ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
         console.log(gift)
 
