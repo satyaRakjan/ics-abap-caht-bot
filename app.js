@@ -169,7 +169,7 @@ function Intent(event){
             console.log(matchc[0]);
             var gift =matchc[0];
             ref.orderByKey().equalTo(gift).on("value", function (snapshot) {
-                console.log(snapshot.val().Fullname)
+                console.log(snapshot)
             });
             //  ref.child(event.source.userId).child("match").set(matchc[0])
           });
