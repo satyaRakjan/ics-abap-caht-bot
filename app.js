@@ -164,9 +164,9 @@ function Intent(event){
               if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
                 people.push(childSnapshot.key) 
               }});
-              console.log(people)
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
             var gift =matchc[0];
+            console.log(gift)
             ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
                 console.log(snapshot.val().Fullname)
              ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
