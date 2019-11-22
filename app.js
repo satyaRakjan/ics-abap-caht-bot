@@ -171,7 +171,7 @@ function Intent(event){
                 snapshot.forEach(childSnapshot => {
                   if(childSnapshot.key == gift){
                     giftTest.push(childSnapshot.key) 
-                    console.log(giftTest)
+                    HPY(giftTest);
                   }
                 })
               });
@@ -236,14 +236,12 @@ function Intent(event){
   // }
 }
 
-function HPY(gift,event){
+function HPY(giftTest,event){
   var db = admin.database();
   var ref = db.ref("HPY");
-     ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
-        ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
-        console.log(gift)
+  console.log(giftTest)
 
-      });
+ 
 
 }
 function updateFirebase(gift,event){
