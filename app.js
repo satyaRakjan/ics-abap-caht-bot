@@ -171,6 +171,7 @@ function Intent(event){
                 ref.orderByKey().equalTo(match[0]).once("value",  snapshot => {
                   snapshot.forEach(childSnapshot => {
                     console.log(childSnapshot.val().Fullname);
+                    ref.child(match[0]).child("gift").set(fullname)
                   })
                 })
               }
