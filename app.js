@@ -171,9 +171,8 @@ function Intent(event){
                 snapshot.forEach(childSnapshot => {
                   if(childSnapshot.key == gift){
                     giftTest.push(childSnapshot.key) 
+                    console.log(giftTest)
                   }
-                  ref.child(event.source.userId).child("match").set(childSnapshot.val().Fullname)
-                  ref.child(giftTest[0]).child("gift").set(event.source.userId)
                 })
               });
               // ref.orderByChild(gift).on("value", function (snapshot) {
