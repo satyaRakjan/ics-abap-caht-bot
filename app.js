@@ -172,7 +172,7 @@ function Intent(event){
                   if(childSnapshot.key == gift){
                     giftTest.push(childSnapshot.key) 
                     ref.child(event.source.userId).child("match").set(childSnapshot.val().Fullname)
-                    HPY(giftTest,event);
+                    HPY(giftTest);
                   }
                 })
               });
@@ -237,7 +237,7 @@ function Intent(event){
   // }
 }
 
-function HPY(giftTest,event){
+function HPY(giftTest){
   var db = admin.database();
   var ref = db.ref("HPY");
   console.log(giftTest)
