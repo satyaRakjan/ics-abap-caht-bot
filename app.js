@@ -170,6 +170,8 @@ function Intent(event){
             ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
                 console.log(snapshot.val().Fullname)
              ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+             ref.child(gift).child("gift").set(event.source.userId)
+
             });
           });
     
