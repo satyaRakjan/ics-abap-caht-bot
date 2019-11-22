@@ -221,8 +221,9 @@ function HPY(gift,event){
   var db = admin.database();
   var ref = db.ref("HPY");
      ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
-        console.log(snapshot.val().Fullname)
         console.log(gift)   
+          ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+          ref.child(gift).child("gift").set(event.source.userId)
       });
 }
 
