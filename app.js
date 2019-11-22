@@ -158,7 +158,7 @@ function Intent(event){
 
         }else{
           var people =[]
-          var giftTest = null
+          var giftTest = []
           ref.orderByChild("match").equalTo(0).on("value", snapshot => {
             snapshot.forEach(childSnapshot => { 
               if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
@@ -171,10 +171,12 @@ function Intent(event){
               ref.orderByKey().equalTo(gift).on("value", snapshot => {
                 snapshot.forEach(childSnapshot => {
                   console.log(childSnapshot.key)
-                  giftTest +=childSnapshot.key
+                  if(childSnapshot.key == gift){
+                    giftTest.push(childSnapshot.key) 
+                  }
+                  console.log(giftTest)
                 })
               });
-              console.log(giftTest)
               // ref.orderByChild(gift).on("value", function (snapshot) {
               //   // ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
               //   console.log(gift)
