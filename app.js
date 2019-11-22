@@ -147,7 +147,7 @@ function Intent(event){
     console.log("HPY")
       var db = admin.database();
       var ref = db.ref("HPY");
-      ref.orderByKey().equalTo(event.source.userId).on("value",  snapshot => {
+      ref.orderByKey().equalTo(event.source.userId).once("value",  snapshot => {
         if(snapshot.val()==null){
           console.log("null")
           var message={
@@ -160,12 +160,15 @@ function Intent(event){
           snapshot.forEach(childSnapshot => { 
             var fullname =childSnapshot.val().Fullname;
             var people =[];
-            ref.orderByChild("match").equalTo(0).on("value", snapshot => {
+            ref.orderByChild("match").equalTo(0).once("value", snapshot => {
             snapshot.forEach(childSnapshot => { 
               if(childSnapshot.key !=event.source.userId && childSnapshot.val().gift == 0 ){
                 people.push(childSnapshot.key) 
               }});
               console.log(people)
+              var match = people.splice(Math.floor(Math.random()*people.length), 1);
+              console.log(match)
+
             })
           })
         }
