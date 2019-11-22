@@ -166,12 +166,13 @@ function Intent(event){
               }});
               console.log(people)
             var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
-            console.log(matchc[0]);
             var gift =matchc[0];
             ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
                 console.log(snapshot.val().Fullname)
+             ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+             ref.child(gift).child("match").set(event.source.userId)
+
             });
-            //  ref.child(event.source.userId).child("match").set(matchc[0])
           });
     
  
