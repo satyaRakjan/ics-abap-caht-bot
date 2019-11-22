@@ -170,7 +170,8 @@ function Intent(event){
               console.log(matchc)
               ref.orderByKey().equalTo(gift).on("value", snapshot => {
                 snapshot.forEach(childSnapshot => {
-                  console.log(childSnapshot.val().Fullname)
+                  ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+                  ref.child(gift).child("gift").set(event.source.userId)
                 })
               });
               // ref.orderByChild(gift).on("value", function (snapshot) {
