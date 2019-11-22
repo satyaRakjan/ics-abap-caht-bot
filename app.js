@@ -241,7 +241,7 @@ function HPY(giftTest,event){
   var db = admin.database();
   var ref = db.ref("HPY");
   console.log(giftTest)
-  ref.child(giftTest[0]).child("gift").set(event.source.userId)
+  ref.child(giftTest[0]).child("gift").set("1")
  
 
 }
