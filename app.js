@@ -171,7 +171,7 @@ function Intent(event){
               ref.orderByChild().equalTo(gift).on("value", function (snapshot) {
                 // ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
                 console.log(gift)
-                console.log(snapshot.val().Fullname)
+                console.log(snapshot.val())
 
               });
               // HPY(gift,event)
