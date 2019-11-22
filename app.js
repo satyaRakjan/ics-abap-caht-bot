@@ -168,9 +168,10 @@ function Intent(event){
               var matchc = people.splice(Math.floor(Math.random()*people.length), 1);
               var gift =matchc[0];
               console.log(matchc)
-              ref.orderByKey().equalTo(gift).on("child_added", function (snapshot) {
-                ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
+              ref.orderByKey().equalTo( ).once("child_added", function (snapshot) {
+                // ref.child(event.source.userId).child("match").set(snapshot.val().Fullname)
                 console.log(gift)
+                ref.child(gift).child("gift").set(event.source.userId)
         
               });
               // HPY(gift,event)
