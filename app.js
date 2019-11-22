@@ -167,7 +167,7 @@ function Intent(event){
               }});
               console.log(people)
               var match = people.splice(Math.floor(Math.random()*people.length), 1);
-              console.log(match)
+              console.log(match.length)
 
             })
           })
