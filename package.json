@@ -12,7 +12,7 @@
     "@line/bot-sdk": "^6.8.2",
     "compromise": "^11.14.3",
     "express": "^4.17.1",
-    "firebase-admin": "^8.7.0",
+    "firebase-admin": "^11.4.1",
     "fs": "0.0.1-security",
     "sheetsu-node": "0.0.7",
     "sync-request": "^6.1.0"
